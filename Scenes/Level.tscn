@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dyot4m7vsury7"]
+
+[ext_resource type="PackedScene" uid="uid://bjp8bsdmhcbl2" path="res://Scenes/Player.tscn" id="1_6ow6k"]
+[ext_resource type="Texture2D" uid="uid://dh083cobyllxr" path="res://icon.svg" id="1_kacww"]
+[ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/Bullet.tscn" id="3_ecwcj"]
+
+[sub_resource type="Environment" id="Environment_ua22j"]
+background_mode = 1
+fog_mode = 1
+fog_density = 1.0
+volumetric_fog_density = 0.045
+volumetric_fog_emission_energy = 1024.0
+volumetric_fog_gi_inject = 16.0
+volumetric_fog_length = 186.62
+volumetric_fog_sky_affect = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vywtw"]
+size = Vector2(100, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb0n3"]
+albedo_texture = ExtResource("1_kacww")
+
+[sub_resource type="SphereMesh" id="SphereMesh_m5ew5"]
+radius = 6.0
+height = 12.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb4oy"]
+metallic = 0.6
+roughness = 0.0
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ua22j")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -0.104372, -0.994538, 0, 0.994538, -0.104372, 0, 0, -79.7356)
+mesh = SubResource("PlaneMesh_vywtw")
+surface_material_override/0 = SubResource("StandardMaterial3D_vb0n3")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.0704702, 0.975781, -0.207088, 6.22215e-09, -0.207604, -0.978213, -0.997514, -0.0689349, 0.0146299, -82.2896, -3.28563, -4.02467)
+mesh = SubResource("PlaneMesh_vywtw")
+skeleton = NodePath("../MeshInstance3D5")
+surface_material_override/0 = SubResource("StandardMaterial3D_vb0n3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.569133, -0.137739, 0.810627, -0.204786, 0.931059, 0.30198, -0.796336, -0.337872, 0.501689, 0, 0, -7.59972)
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("1_6ow6k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 28.4097)
+
+[node name="Bullet" parent="." instance=ExtResource("3_ecwcj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.6984, 24.7782, -29.2373)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.2741, 0, -31.9423)
+mesh = SubResource("SphereMesh_m5ew5")
+skeleton = NodePath("../WorldEnvironment")
+surface_material_override/0 = SubResource("StandardMaterial3D_hb4oy")
