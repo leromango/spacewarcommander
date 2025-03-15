@@ -61,7 +61,6 @@ ios/.godot/
 *.pdb
 *.cache/
 obj/
-bin/
 
 # Godot addons (optional - ignore if addons are not core to your project)
 # You can remove this line if you’re developing your own addons and want them in Git

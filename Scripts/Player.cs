@@ -11,8 +11,10 @@ public partial class Player : CharBase
 	private Node3D BulletPoint;
 	private SpotLight3D flashlight;
 	private Timer flashlightTimer;
+	// private SerComm serComm;
 	private bool rotAxis = true;
-
+	
+	
 	[Export]private int maxBullets = 10;
 	private int currBullets = 10;
 
@@ -27,7 +29,7 @@ public partial class Player : CharBase
 		flashlight = GetNode<SpotLight3D>("Flashlight");
 		flashlightTimer = GetNode<Timer>("Timer");
 		
-
+		// serComm = GetNode<SerComm>("SerComm");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
