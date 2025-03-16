@@ -3,7 +3,7 @@ using System;
 
 public partial class Bullet : StaticBody3D
 {
-    [Export] private float speed = 10.0f;
+    [Export] private float speed = 100.0f;
     private Vector3 velocity;
 
     public override void _Ready()

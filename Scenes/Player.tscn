@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=4 uid="uid://bjp8bsdmhcbl2"]
+[gd_scene load_steps=51 format=4 uid="uid://bjp8bsdmhcbl2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rk1ym"]
 [ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/Bullet.tscn" id="2_7wdrj"]
+[ext_resource type="ArrayMesh" uid="uid://cf2c2p2c6a8mg" path="res://Meshes/Reload.obj" id="3_63ewy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1c5c"]
 size = Vector3(30, 10, 15)
@@ -439,16 +440,51 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_b3o3g")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or3b5"]
+albedo_color = Color(0.444843, 0.444843, 0.444843, 1)
+metallic = 0.6
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ax4e"]
+albedo_color = Color(0, 0.780392, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+emission_energy_multiplier = 10.26
+
+[sub_resource type="QuadMesh" id="QuadMesh_di3nx"]
+lightmap_size_hint = Vector2i(6, 3)
+material = SubResource("StandardMaterial3D_3ax4e")
+size = Vector2(0.8, 0.2)
+center_offset = Vector3(0.4, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iqutg"]
+size = Vector2(2, 1.6)
+center_offset = Vector3(0, 0, -0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58h4h"]
+albedo_color = Color(0, 0.341176, 0.909804, 1)
+emission_enabled = true
+emission = Color(0, 0.341176, 0.909804, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txp1d"]
+albedo_color = Color(0.682353, 0.0784314, 0.258824, 1)
+emission_enabled = true
+emission = Color(0.682353, 0.0784314, 0.258824, 1)
+emission_energy_multiplier = 3.0
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_rk1ym")
-bulletScene = ExtResource("2_7wdrj")
+_bulletScene = ExtResource("2_7wdrj")
+MaxHealth = 100.0
+MaxDamage = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6229, 0)
 shape = SubResource("BoxShape3D_k1c5c")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.34262e-08, -0.114036, 0.993477, -4.98465e-09, 0.993477, 0.114036, -1, 4.44089e-16, -4.37114e-08, -3.24983, 4.5289, 0)
+transform = Transform3D(-4.37114e-08, -0.0871558, 0.996195, 0, 0.996195, 0.0871558, -1, 3.8097e-09, -4.35451e-08, -3.25, 4.3, 0)
 fov = 60.0
 
 [node name="Meshes" type="Node3D" parent="."]
@@ -531,6 +567,46 @@ mesh = SubResource("ArrayMesh_vdscd")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_u54tm")
 
+[node name="Reload" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.06232, 2.54872, 2.85324)
+mesh = ExtResource("3_63ewy")
+surface_material_override/0 = SubResource("StandardMaterial3D_or3b5")
+
+[node name="Label3D" type="Label3D" parent="Meshes/Reload"]
+transform = Transform3D(1.91069e-15, -1, -4.37114e-08, -4.37114e-08, -4.37114e-08, 1, -1, 0, -4.37114e-08, 0.0406694, 0.164873, -0.0192578)
+shaded = true
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "EMPTY"
+font_size = 60
+outline_size = 0
+
+[node name="AmmoIndicator" type="MeshInstance3D" parent="Meshes/Reload"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.34939, -0.00248027, 0.409901)
+visible = false
+mesh = SubResource("QuadMesh_di3nx")
+
+[node name="Damage" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.095e-09, 0.1, 0, -0.0936827, -4.37114e-09, 0, 0, 0, 1, -8.83715, 2.71624, -2.06752)
+mesh = SubResource("PlaneMesh_iqutg")
+surface_material_override/0 = SubResource("StandardMaterial3D_58h4h")
+
+[node name="HealthRegen" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-4.10887e-09, 1.17, 0, -0.094, -5.11423e-08, 0, 0, 0, 1, -8.83715, 2.42362, -2.06752)
+mesh = SubResource("PlaneMesh_iqutg")
+surface_material_override/0 = SubResource("StandardMaterial3D_txp1d")
+
+[node name="HealthLabel" type="Label3D" parent="Meshes"]
+transform = Transform3D(-2.18557e-08, -0.866025, 0.5, -3.78552e-08, 0.5, 0.866025, -1, 0, -4.37114e-08, -10.2346, 2.93588, 0.975)
+shaded = true
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Health:"
+font_size = 64
+
+[node name="Node3D" type="Node3D" parent="Meshes"]
+transform = Transform3D(-2.18557e-08, -0.866025, 0.5, -3.78552e-08, 0.5, 0.866025, -1, 0, -4.37114e-08, -9.33578, 2.27595, 0.975)
+
 [node name="TopLight" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.45778, 7.17581, -0.320575)
 light_color = Color(0.260626, 0.425622, 0.405503, 1)
@@ -556,7 +632,7 @@ spot_range = 9.162
 spot_attenuation = -0.46
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, -0.0135259, 0.999909, -5.91235e-10, -0.999909, -0.0135259, -4.37074e-08, -13.4638, 3.10626, -0.636829)
+transform = Transform3D(-4.37114e-08, 0, 1, -0.0135259, 0.999909, -5.91236e-10, -0.999909, -0.0135259, -4.37074e-08, -13.4638, 3.10626, -0.0722396)
 light_energy = 64.0
 spot_range = 1312.98
 spot_angle = 30.96
