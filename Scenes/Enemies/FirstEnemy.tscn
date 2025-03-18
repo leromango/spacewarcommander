@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://c36d17xkfreox"]
+[gd_scene load_steps=10 format=4 uid="uid://c36d17xkfreox"]
 
 [ext_resource type="Script" path="res://Scripts/GD/Enemy.gd" id="1_7kv5a"]
+[ext_resource type="PackedScene" uid="uid://cmd0ru3idgk10" path="res://Scenes/bullets/EnemyBullet.tscn" id="2_jvtvx"]
 [ext_resource type="PackedScene" uid="uid://bdkfgv7ygiwn5" path="res://Scenes/Enemies/AI/FirstEnemyBeahviourTree.tscn" id="3_sbn4f"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="5_efbf3"]
 
@@ -56,6 +57,7 @@ size = Vector3(17.8426, 3.59253, 16.2878)
 
 [node name="FirstEnemy" type="CharacterBody3D"]
 script = ExtResource("1_7kv5a")
+bulletScene = ExtResource("2_jvtvx")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
@@ -68,14 +70,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0849266, -0.367554, 2.0374
 shape = SubResource("BoxShape3D_4n3bg")
 
 [node name="BulletPoint" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -1.63581, -0.143013)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.11223e-09, -1.63581, -0.0718135)
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("5_efbf3")
 blackboard = {
 "DestinationLocation": null,
 "IsMovingToLocation": false,
-"PlayerRefNode3D": null
+"PlayerRefNode3D": null,
+"ShouldBeHostile": true
 }
 
 [node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("3_sbn4f")]

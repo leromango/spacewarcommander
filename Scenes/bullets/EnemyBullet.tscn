@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmd0ru3idgk10"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_0vgba"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_w1wee"]
+radius = 2.302
+
+[sub_resource type="SphereMesh" id="SphereMesh_p3ya5"]
+height = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrsn8"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 50000.0
+
+[node name="Bullet" type="StaticBody3D"]
+script = ExtResource("1_0vgba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_w1wee")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_p3ya5")
+surface_material_override/0 = SubResource("StandardMaterial3D_jrsn8")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787735, 0, 0.0112762)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+
+[node name="BulletCollision" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletCollision"]
+shape = SubResource("SphereShape3D_w1wee")
+
+[connection signal="body_entered" from="BulletCollision" to="." method="_on_bullet_collision_body_entered"]

@@ -136,7 +136,8 @@ public partial class Player : CharBase
         }
         if (_bulletScene != null && _bulletPoint != null)
         {
-            Node3D bulletInstance = (Node3D)_bulletScene.Instantiate();
+            Bullet bulletInstance = (Bullet)_bulletScene.Instantiate();
+            bulletInstance.setDamage(CurrDamage);
             bulletInstance.GlobalTransform = _bulletPoint.GlobalTransform;
             GetParent().AddChild(bulletInstance);
         }

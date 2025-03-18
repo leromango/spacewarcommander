@@ -9,9 +9,9 @@ radius = 2.302
 height = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrsn8"]
-albedo_color = Color(1, 0, 0, 1)
+albedo_color = Color(0, 0, 1, 1)
 emission_enabled = true
-emission = Color(1, 0, 0, 1)
+emission = Color(0.160607, 0.175909, 1, 1)
 emission_energy_multiplier = 50000.0
 
 [node name="Bullet" type="StaticBody3D"]
@@ -29,3 +29,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jrsn8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787735, 0, 0.0112762)
 light_color = Color(1, 0, 0, 1)
 light_energy = 16.0
+
+[node name="BulletCollision" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BulletCollision"]
+shape = SubResource("SphereShape3D_w1wee")
+
+[connection signal="body_entered" from="BulletCollision" to="." method="_on_bullet_collision_body_entered"]

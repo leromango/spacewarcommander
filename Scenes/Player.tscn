@@ -1,8 +1,8 @@
 [gd_scene load_steps=51 format=4 uid="uid://bjp8bsdmhcbl2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rk1ym"]
-[ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/Bullet.tscn" id="2_7wdrj"]
-[ext_resource type="ArrayMesh" uid="uid://cf2c2p2c6a8mg" path="res://Meshes/Reload.obj" id="3_63ewy"]
+[ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/bullets/PlayerBullet.tscn" id="2_7wdrj"]
+[ext_resource type="ArrayMesh" uid="uid://3q3ehw35rycd" path="res://Meshes/Reload.obj" id="3_63ewy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1c5c"]
 size = Vector3(30, 10, 15)
@@ -583,7 +583,6 @@ outline_size = 0
 
 [node name="AmmoIndicator" type="MeshInstance3D" parent="Meshes/Reload"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.34939, -0.00248027, 0.409901)
-visible = false
 mesh = SubResource("QuadMesh_di3nx")
 
 [node name="Damage" type="MeshInstance3D" parent="Meshes"]
