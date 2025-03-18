@@ -58,6 +58,7 @@ size = Vector3(17.8426, 3.59253, 16.2878)
 [node name="FirstEnemy" type="CharacterBody3D"]
 script = ExtResource("1_7kv5a")
 bulletScene = ExtResource("2_jvtvx")
+movementSpeed = 0.005
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, 0, 0, 0)
@@ -81,6 +82,7 @@ blackboard = {
 "ShouldBeHostile": true
 }
 
-[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("3_sbn4f")]
+[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("3_sbn4f")]
 actor_node_path = NodePath("..")
 blackboard = NodePath("../Blackboard")
+actor = NodePath("..")

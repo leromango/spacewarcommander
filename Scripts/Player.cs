@@ -137,7 +137,7 @@ public partial class Player : CharBase
         if (_bulletScene != null && _bulletPoint != null)
         {
             Bullet bulletInstance = (Bullet)_bulletScene.Instantiate();
-            bulletInstance.setDamage(CurrDamage);
+            bulletInstance.initializeBullet(this, CurrDamage);
             bulletInstance.GlobalTransform = _bulletPoint.GlobalTransform;
             GetParent().AddChild(bulletInstance);
         }

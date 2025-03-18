@@ -14,7 +14,7 @@
 
 [node name="FirstEnemyBeahviourTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_84lv2")
-blackboard = NodePath("@Node@60337")
+blackboard = NodePath("@Node@17350")
 actor = NodePath("")
 
 [node name="SelectorComposite" type="Node" parent="."]

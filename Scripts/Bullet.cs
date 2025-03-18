@@ -7,6 +7,7 @@ public partial class Bullet : StaticBody3D
     private Area3D collisionArea;
     private float damage = 20;
     private Vector3 velocity;
+    private Node3D ownerNode;
 
     public override void _Ready()
     {
@@ -14,9 +15,10 @@ public partial class Bullet : StaticBody3D
         collisionArea = GetNode<Area3D>("BulletCollision");
     }
 
-    public void setDamage(float damage)
+    public void initializeBullet(Node3D owner, float damage)
     {
         this.damage = damage;
+        this.ownerNode = owner;
     }
 
     public override void _Process(double delta)
@@ -27,5 +29,11 @@ public partial class Bullet : StaticBody3D
     public void _on_bullet_collision_body_entered(Node3D body)
     {
         // When bullet collides with something
+        if (!ownerNode.Name.Equals(body.Name))
+        {
+            GD.Print(body.Name);
+            QueueFree();
+        }
+            
     }
 }

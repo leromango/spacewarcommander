@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyot4m7vsury7"]
+[gd_scene load_steps=10 format=3 uid="uid://dyot4m7vsury7"]
 
 [ext_resource type="PackedScene" uid="uid://bjp8bsdmhcbl2" path="res://Scenes/Player.tscn" id="1_6ow6k"]
 [ext_resource type="Texture2D" uid="uid://v4517ruasppu" path="res://icon.svg" id="1_kacww"]
 [ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/bullets/PlayerBullet.tscn" id="3_ecwcj"]
+[ext_resource type="PackedScene" uid="uid://c36d17xkfreox" path="res://Scenes/Enemies/FirstEnemy.tscn" id="4_rst2r"]
 
 [sub_resource type="Environment" id="Environment_ua22j"]
 background_mode = 1
@@ -61,3 +62,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.2741, 0, -31.9423)
 mesh = SubResource("SphereMesh_m5ew5")
 skeleton = NodePath("../WorldEnvironment")
 surface_material_override/0 = SubResource("StandardMaterial3D_hb4oy")
+
+[node name="FirstEnemy" parent="." instance=ExtResource("4_rst2r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.64274, 2.58582, -4.85793)

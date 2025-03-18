@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func moveToLocation(location : Vector3) -> void:
 	look_at(location)
-	set_global_position(global_position + ((location - global_position) * movementSpeed))
+	# set_global_position(global_position + ((location - global_position) * movementSpeed))
 	
 func is_alive() -> bool:
 	return currentHealth > 0
