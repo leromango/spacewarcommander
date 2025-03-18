@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdkfgv7ygiwn5"]
+
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_84lv2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_k0jp1"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_0q4x4"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/repeater.gd" id="4_fd7g3"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/delayer.gd" id="5_e8nbv"]
+[ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/ShootAtPlayer.gd" id="6_tqusx"]
+[ext_resource type="Script" path="res://Scenes/Enemies/AI/IsNotAtDestination.gd" id="7_ma7tg"]
+[ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/RunFromPlayer.gd" id="7_vd004"]
+[ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/MoveToRandomLocation.gd" id="7_y6481"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_erase.gd" id="8_vvngc"]
+
+[node name="FirstEnemyBeahviourTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_84lv2")
+blackboard = NodePath("@Node@33329")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="."]
+script = ExtResource("2_k0jp1")
+
+[node name="Hostile" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_0q4x4")
+
+[node name="RepeaterDecorator" type="Node" parent="SelectorComposite/Hostile"]
+script = ExtResource("4_fd7g3")
+repetitions = 3
+
+[node name="DelayDecorator" type="Node" parent="SelectorComposite/Hostile/RepeaterDecorator"]
+script = ExtResource("5_e8nbv")
+wait_time = 0.5
+
+[node name="ShootAtPlayerAction" type="Node" parent="SelectorComposite/Hostile/RepeaterDecorator/DelayDecorator"]
+script = ExtResource("6_tqusx")
+
+[node name="MoveToRandomLocation" type="Node" parent="SelectorComposite/Hostile"]
+script = ExtResource("7_y6481")
+
+[node name="BlackboardEraseAction" type="Node" parent="SelectorComposite/Hostile"]
+script = ExtResource("8_vvngc")
+key = "DestinationLocation"
+
+[node name="Flee" type="Node" parent="SelectorComposite"]
+script = ExtResource("3_0q4x4")
+
+[node name="IsNotAtDestination" type="Node" parent="SelectorComposite/Flee"]
+script = ExtResource("7_ma7tg")
+
+[node name="RunFromPlayerAction" type="Node" parent="SelectorComposite/Flee/IsNotAtDestination"]
+script = ExtResource("7_vd004")
+
+[node name="BlackboardEraseAction" type="Node" parent="SelectorComposite/Flee"]
+script = ExtResource("8_vvngc")
+key = "DestinationLocation"
