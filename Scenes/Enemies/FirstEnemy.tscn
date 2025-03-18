@@ -57,6 +57,8 @@ roughness = 0.0
 size = Vector3(17.8426, 3.59253, 16.2878)
 
 [node name="FirstEnemy" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_7kv5a")
 bulletScene = ExtResource("2_jvtvx")
 movementSpeed = 0.05
@@ -72,7 +74,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0849266, -0.367554, 2.0374
 shape = SubResource("BoxShape3D_4n3bg")
 
 [node name="BulletPoint" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.21541e-08, 2.79889, -0.0718136)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 5.21541e-08, -1.75601, 0.744152)
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("5_efbf3")

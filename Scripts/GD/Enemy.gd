@@ -42,8 +42,9 @@ func _process(delta: float) -> void:
 func die() -> void:
 	pass
 
-func got_shot(damage: float) -> void:
+func reduceHealth(damage: float) -> void:
 	currentHealth -= damage
+	print(name + " New Health " + str(currentHealth))
 	if (currentHealth <= 0):
 		die()
 		return

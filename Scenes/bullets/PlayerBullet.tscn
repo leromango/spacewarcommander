@@ -27,10 +27,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_jrsn8")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00787735, 0, 0.0112762)
-light_color = Color(1, 0, 0, 1)
+light_color = Color(0.363864, 0.478215, 1, 1)
 light_energy = 16.0
 
 [node name="BulletCollision" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletCollision"]
 shape = SubResource("SphereShape3D_w1wee")

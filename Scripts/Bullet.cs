@@ -32,8 +32,12 @@ public partial class Bullet : StaticBody3D
         // When bullet collides with something
         if (body is StaticBody3D || ownerNode.Name.Equals(body.Name))
             return;
-        GD.Print(body.Name);
+        if (body is CharBase)
+            ((CharBase)body).reduceHealth(damage);
+        else
+            body.Call("reduceHealth", damage);
+
+        // GD.Print(ownerNode.Name + " COLLIDED WITH " + body.Name);
         QueueFree();
-        GD.Print(ownerNode.Name + " COLLIDED WITH " + body.Name);
     }
 }

@@ -19,7 +19,14 @@ public partial class CharBase : CharacterBody3D
 	public override void _Process(double delta)
 	{
 	}
-	
+
+	public void reduceHealth(float amount) {
+		CurrHealth -= amount;
+		if (CurrHealth < 0)
+			Die();
+		GD.Print(Name + " New Health: " + CurrHealth);
+	}
+
 	protected virtual void Shoot() { }
 	
 	protected virtual void Die() { }
