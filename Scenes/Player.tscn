@@ -475,6 +475,7 @@ emission_energy_multiplier = 3.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_rk1ym")
+_rotationSpeed = 0.001
 _bulletScene = ExtResource("2_7wdrj")
 MaxHealth = 100.0
 MaxDamage = 10.0

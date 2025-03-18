@@ -10,11 +10,12 @@ class_name Enemy extends CharacterBody3D
 var currentHealth : float
 
 func shoot(playerLocation : Vector3) -> bool:
-	var spawnedBullet = bulletScene.instantiate() as Node3D
+	look_at(playerLocation)
+	var spawnedBullet = bulletScene.instantiate()
 	if spawnedBullet == null:
-		printerr("BULLET SCENE INVALID")
+		print_debug("BULLET INVALID")
 		return false
-	spawnedBullet.set_global_position(playerLocation)
+	spawnedBullet.initializeBullet(self as Node3D, $BulletPoint.global_transform, damage)
 	get_parent().add_child(spawnedBullet)
 	return true
 
@@ -27,7 +28,7 @@ func _ready() -> void:
 
 func moveToLocation(location : Vector3) -> void:
 	look_at(location)
-	# set_global_position(global_position + ((location - global_position) * movementSpeed))
+	set_global_position(global_position + ((location - global_position) * movementSpeed * get_physics_process_delta_time()))
 	
 func is_alive() -> bool:
 	return currentHealth > 0

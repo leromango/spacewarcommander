@@ -14,6 +14,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		# interrupt(actor, blackboard)
 	previousDestination = previousDestination as Vector3
 	if selfRef.is_at_location(previousDestination, acceptibleRadius):
+		blackboard.set_value("DestinationLocation", null)
 		return SUCCESS
 	selfRef.moveToLocation(previousDestination)
 	return RUNNING

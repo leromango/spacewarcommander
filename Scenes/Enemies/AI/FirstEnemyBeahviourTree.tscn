@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bdkfgv7ygiwn5"]
+[gd_scene load_steps=11 format=3 uid="uid://bdkfgv7ygiwn5"]
 
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_84lv2"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="2_k0jp1"]
@@ -9,12 +9,11 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/ShootAtPlayer.gd" id="6_tqusx"]
 [ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/RunFromPlayer.gd" id="7_vd004"]
 [ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/MoveToRandomLocation.gd" id="7_y6481"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/blackboard_erase.gd" id="8_vvngc"]
 [ext_resource type="Script" path="res://Scenes/Enemies/AI/Actions/set_hostile.gd" id="11_ig7d7"]
 
 [node name="FirstEnemyBeahviourTree" type="Node" node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_84lv2")
-blackboard = NodePath("@Node@17350")
+blackboard = NodePath("@Node@17375")
 actor = NodePath("")
 
 [node name="SelectorComposite" type="Node" parent="."]
@@ -39,23 +38,15 @@ script = ExtResource("6_tqusx")
 
 [node name="MoveToRandomLocation" type="Node" parent="SelectorComposite/Hostile"]
 script = ExtResource("7_y6481")
-distanceAway = 600.0
-randomnessOfDestinationRange = 700.0
-acceptibleRadius = 200.0
-
-[node name="BlackboardEraseAction" type="Node" parent="SelectorComposite/Hostile"]
-script = ExtResource("8_vvngc")
-key = "DestinationLocation"
+distanceAway = 80.0
+randomnessOfDestinationRange = 200.0
+acceptibleRadius = 50.0
 
 [node name="Flee" type="Node" parent="SelectorComposite"]
 script = ExtResource("3_0q4x4")
 
 [node name="RunFromPlayerAction" type="Node" parent="SelectorComposite/Flee"]
 script = ExtResource("7_vd004")
-
-[node name="BlackboardEraseAction" type="Node" parent="SelectorComposite/Flee"]
-script = ExtResource("8_vvngc")
-key = "DestinationLocation"
 
 [node name="SetHostile" type="Node" parent="SelectorComposite/Flee"]
 script = ExtResource("11_ig7d7")

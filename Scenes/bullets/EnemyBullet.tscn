@@ -16,6 +16,7 @@ emission_energy_multiplier = 50000.0
 
 [node name="Bullet" type="StaticBody3D"]
 script = ExtResource("1_0vgba")
+speed = 50.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_w1wee")
