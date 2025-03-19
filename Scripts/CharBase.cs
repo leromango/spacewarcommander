@@ -20,7 +20,7 @@ public partial class CharBase : CharacterBody3D
 	{
 	}
 
-	public void reduceHealth(float amount) {
+	public virtual void reduceHealth(float amount, Vector3 hitLocation) {
 		CurrHealth -= amount;
 		if (CurrHealth < 0)
 			Die();

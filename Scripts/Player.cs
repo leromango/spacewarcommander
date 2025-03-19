@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public partial class Player : CharBase
 {
@@ -38,6 +39,22 @@ public partial class Player : CharBase
     private List<MeshInstance3D> _healthSegments = new List<MeshInstance3D>();
     private Material _matHealthOn;
     private Material _matHealthOff;
+
+    public enum EShotDirectionIndication
+    {
+        FORWARD,
+        LEFT,
+        RIGHT,
+        BACK,
+        ALL,
+    }
+
+    public override void reduceHealth(float amount, Vector3 hitLocation)
+    {
+        base.reduceHealth(amount, hitLocation);
+        EShotDirectionIndication direction = GetShotDirectionIndicator(hitLocation);
+        GD.Print("DIRECTION SHOT: " + direction.ToString());
+    }
 
     public override void _Ready()
     {
@@ -275,5 +292,38 @@ public partial class Player : CharBase
     {
         CurrHealth = Mathf.Max(CurrHealth - damage, 0);
         UpdateHealthSegments();
+    }
+
+    public EShotDirectionIndication GetShotDirectionIndicator(Vector3 hitLocation) {
+        EShotDirectionIndication indicatorResult = EShotDirectionIndication.ALL;  // By default for when it is diagonal
+        Vector3 hitLocationLocal = (hitLocation - GlobalPosition).Rotated(new Vector3(1,0,0), Rotation.X)
+            .Rotated(new Vector3(0, 1, 0), Rotation.Y)
+            .Rotated(new Vector3(0, 0, 1), Rotation.Z);
+        const float threshold = 2;
+        float distanceZ = Math.Abs(hitLocationLocal.Z);
+        float distanceY = Math.Abs(hitLocationLocal.Y);
+        float distanceX = Math.Abs(hitLocationLocal.X);
+        // Up and down is basically forward and back
+        if (distanceX >= threshold && distanceX > distanceY && distanceX > distanceZ) {
+            if (hitLocationLocal.X > 0)
+                indicatorResult = EShotDirectionIndication.FORWARD;
+            else if (hitLocationLocal.X < 0)
+                indicatorResult = EShotDirectionIndication.BACK;
+        }
+        else if (distanceY >= threshold && distanceY > distanceX && distanceY > distanceZ)
+        {
+            if (hitLocationLocal.Y > 0)
+                indicatorResult = EShotDirectionIndication.FORWARD;
+            else if (hitLocationLocal.Y < 0)
+                indicatorResult = EShotDirectionIndication.BACK;
+        }
+        else if (distanceZ >= threshold && distanceZ > distanceX && distanceZ > distanceY) {
+            if (hitLocationLocal.Z > 0)
+                indicatorResult = EShotDirectionIndication.LEFT;
+            else if (hitLocationLocal.Z < 0)
+                indicatorResult = EShotDirectionIndication.RIGHT;
+        }
+
+        return indicatorResult;
     }
 }

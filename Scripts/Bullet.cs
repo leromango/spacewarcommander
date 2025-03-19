@@ -33,7 +33,7 @@ public partial class Bullet : StaticBody3D
         if (body is StaticBody3D || ownerNode.Name.Equals(body.Name))
             return;
         if (body is CharBase)
-            ((CharBase)body).reduceHealth(damage);
+            ((CharBase)body).reduceHealth(damage, GlobalPosition);
         else
             body.Call("reduceHealth", damage);
 
