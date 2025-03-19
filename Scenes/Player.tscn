@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=4 uid="uid://bjp8bsdmhcbl2"]
+[gd_scene load_steps=52 format=4 uid="uid://bjp8bsdmhcbl2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rk1ym"]
 [ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/bullets/PlayerBullet.tscn" id="2_7wdrj"]
 [ext_resource type="ArrayMesh" uid="uid://3q3ehw35rycd" path="res://Meshes/Reload.obj" id="3_63ewy"]
+[ext_resource type="Script" path="res://Scripts/GD/ArduinoComm/arduino_communication.gd" id="4_rb3om"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k1c5c"]
 size = Vector3(30, 10, 15)
@@ -644,5 +645,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -29.78
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="SerComm" type="SerComm" parent="."]
+script = ExtResource("4_rb3om")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
