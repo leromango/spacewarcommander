@@ -22,7 +22,7 @@ func send_light_indicator(direction: int) -> void:
 	# write_serial("a" + str(direction) + "a")
 	currentString += "a" + str(direction) + "a"
 
-func send_buzzer_buzz() -> void:
+func send_buzzer_buzz(turnOffAfterTime : float) -> void:
 	# print("buzzer")
 	# write_serial("b")
 	currentString += "b"
@@ -32,7 +32,7 @@ func message_read(m):
 	# DON'T do process()
 	print(m)
 	var elements : PackedStringArray = m.split(",", false)
-	if elements.is_empty() or len(elements) < 5:
+	if elements.is_empty() or len(elements) < 7:
 		return
 	var knobValue : float = elements[0].to_float()
 	var shootState : int = elements[1].to_int()
@@ -54,6 +54,8 @@ func message_read(m):
 	move(moveState)  # TODO: CHECK moveState
 	setFlashlightValue(flashlightValue)
 	resourceDistribution(knobValue)
+	
+	write_message()
 
 func reloaded() -> void:
 	parentPlayerNode.Reload()
@@ -84,9 +86,10 @@ func move(value : float) -> void:
 	#currentString = ""
 
 func write_message() -> void:
+	# currentString += "\n"
 	# print("Trying...")
 	if currentString.is_empty() or not open_serial():
 		return
-	print(currentString)
 	write_serial(currentString)
+	print(currentString)
 	currentString = ""

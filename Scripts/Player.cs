@@ -64,7 +64,8 @@ public partial class Player : CharBase
     public override void reduceHealth(float amount, Vector3 hitLocation)
     {
         base.reduceHealth(amount, hitLocation);
-        if (CurrHealth <= _buzzerHealthThreshold && _LowHealthBuzzerTimer.TimeLeft <= 0) {
+        if (CurrHealth <= _buzzerHealthThreshold) { // && _LowHealthBuzzerTimer.TimeLeft <= 0) {
+            SendBuzzerBuzz();
             // GD.Print("SETTING BuZZER");
             _LowHealthBuzzerTimer.Start(GetBuzzerBuzzTime());
         }
@@ -209,7 +210,7 @@ public partial class Player : CharBase
         }
     }
     
-    private void Eject()
+    public void Eject()
     {
         _reloadBlock.SetTransform(_reloadBlockTransform);
         SendReloadPrompt();
@@ -232,10 +233,10 @@ public partial class Player : CharBase
 
     private void _on_low_health_buzzer_timer_timeout()
     {
-        if (CurrHealth > _buzzerHealthThreshold) return;
-        SendBuzzerBuzz();
-        float aa = GetBuzzerBuzzTime();
-        _LowHealthBuzzerTimer.Start(aa);
+        //if (CurrHealth > _buzzerHealthThreshold) return;
+        //SendBuzzerBuzz();
+        //float aa = GetBuzzerBuzzTime();
+        //_LowHealthBuzzerTimer.Start(aa);
         // GD.Print(aa);
     }
 
@@ -382,7 +383,7 @@ public partial class Player : CharBase
 
     public void SendBuzzerBuzz()
     {
-        _serCommNode.Call("send_buzzer_buzz");
+        _serCommNode.Call("send_buzzer_buzz", GetBuzzerBuzzTime());
     }
 
     public void SendLightIndicator(EShotDirectionIndication direction)
@@ -393,7 +394,7 @@ public partial class Player : CharBase
 
     public void _on_send_message_timer_timeout() {
         if (CurrHealth <= 0) return;
-        _serCommNode.Call("write_message");
+        // _serCommNode.Call("write_message");
         _SendMessageTimer.Start();
     }
 }

@@ -27,10 +27,10 @@ long long unsigned int reloadStartTime = 0;
 long long unsigned int reloadDuration = 500;
 
 long long unsigned int buzzerStartTime = 0;
-long long unsigned int buzzerDuration = 500;
+long long unsigned int buzzerDuration = 10;
 
-long long unsigned int indicatorDuration = 500;
-long long unsigned int indicatorStartTime = 0;
+long long unsigned int indicatorDuration = 50;
+long long unsigned int indicatorStartTime = 500;
 
 bool bShouldBuzz = false;
 
@@ -50,6 +50,7 @@ ELightIndication currentIndicator;
 void setup() {
   currentIndicator = ELightIndication::NONE;
   Serial.begin(256000);
+  Serial.setTimeout(50);
   
   pinMode(knobPin, INPUT);
   pinMode(flashlightSensorPin, INPUT);
@@ -70,25 +71,35 @@ void setup() {
 }
 
 void loop() {
+  long long unsigned currentMillis = millis();
   int reloadValue = 0;
-  String incomingString = Serial.readString();
+  
+  
+  while(Serial.available() > 0) {
+    String incomingString = Serial.readString();
   // Serial.println(incomingString);
-    if (incomingString.indexOf("b") != -1) {
+    int buzzerIndex = incomingString.indexOf("b");
+    if (buzzerIndex != -1) {
+      // buzzerDuration = (long long) incomingString.substring(buzzerIndex, incomingString.indexOf("b", 1)).toInt();
       bShouldBuzz = true;
+      buzzerStartTime = currentMillis;
     }
     if (incomingString.indexOf("r") != -1) {
       reloadValue = 1;
+      reloadStartTime = currentMillis;
     }
     int indexLightIndication = incomingString.indexOf("a");
-    if (indexLightIndication != -1) {
-      currentIndicator = static_cast<ELightIndication>((int)(incomingString.charAt(indexLightIndication+1)  - '0'));
+    if (indexLightIndication != -1 && indicatorStartTime < currentMillis) {
+      currentIndicator = static_cast<ELightIndication>(String(incomingString.charAt(indexLightIndication+1)).toInt());
+      indicatorStartTime = currentMillis;
+      bIsIndicatorOn = true;
     }
-  
-  //while(Serial.available() > 0) {
     
-    
+  }
+// digitalWrite(backLightPin, HIGH);
+ // if (currentIndicator == 0) {
+    //digitalWrite(fwdLightPin, HIGH);
   //}
-
   switch (currentIndicator) {
     case ELightIndication::FORWARD:
       digitalWrite(fwdLightPin, HIGH);
@@ -111,21 +122,24 @@ void loop() {
     default:
       break;
   }
-  if (bShouldBuzz && millis() - indicatorStartTime >= indicatorDuration) {
-    bShouldBuzz = false;
+  if (!bShouldBuzz) {
+    noTone(buzzerPin);  
   }
-  if (bShouldBuzz && millis() - indicatorStartTime >= indicatorDuration) {
-    
+  if (bShouldBuzz && currentMillis - buzzerStartTime >= buzzerDuration) {
+    buzzerStartTime = 0;
+    bShouldBuzz = false;
+    noTone(buzzerPin);
+    // tone(buzzerPin, 0);
+  }
+  if (bIsIndicatorOn && currentMillis - indicatorStartTime >= indicatorDuration) {
+    indicatorStartTime = 0;
     bIsIndicatorOn = false;
     currentIndicator = ELightIndication::NONE;
+    digitalWrite(fwdLightPin, LOW);
+    digitalWrite(rightLightPin, LOW);
+    digitalWrite(backLightPin, LOW);
+    digitalWrite(leftLightPin, LOW);
   }
-  delay(500);
-  digitalWrite(fwdLightPin, LOW);
-  digitalWrite(rightLightPin, LOW);
-  digitalWrite(backLightPin, LOW);
-  digitalWrite(leftLightPin, LOW);
-
-  delay(100);
   // INPUT END
   // OUTPUT 
   
@@ -146,14 +160,20 @@ void loop() {
     reloadServo.write(-100);
   }
 
-  if (isReloading && (millis() - reloadStartTime) >= reloadDuration) {
+  if (isReloading && (currentMillis - reloadStartTime) >= reloadDuration) {
     reloadServo.write(50);
     isReloading = false;
+    reloadStartTime = 0;
   }
 
   
   if (bShouldBuzz) {
-    tone(buzzerPin, 1000);
+    //buzzerStartTime++;
+    tone(buzzerPin, 100);
+    // bShouldBuzz = false;
+  }
+  if (bIsIndicatorOn) {
+    //indicatorStartTime++;  
   }
   /*
   digitalWrite(fwdLightPin, HIGH);
@@ -200,5 +220,5 @@ void loop() {
   
   
   
-  delay(300);
+  delay(100);
 }

@@ -480,6 +480,7 @@ collision_mask = 3
 script = ExtResource("1_rk1ym")
 _rotationSpeed = 0.001
 _bulletScene = ExtResource("2_7wdrj")
+_buzzerTimerMin = 0.3
 MaxHealth = 100.0
 MaxDamage = 10.0
 
@@ -656,6 +657,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="LowHealthBuzzerTimer" type="Timer" parent="."]
+wait_time = 0.683
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="SerComm/SendMessageTimer" to="." method="_on_send_message_timer_timeout"]

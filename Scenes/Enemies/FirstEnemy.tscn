@@ -92,9 +92,10 @@ offset_right = 201.0
 offset_bottom = 23.0
 script = ExtResource("5_se78t")
 
-[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("3_sbn4f")]
+[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("3_sbn4f")]
 actor_node_path = NodePath("..")
 blackboard = NodePath("../Blackboard")
+actor = NodePath("..")
 
 [node name="HostileEnableTimer" type="Timer" parent="."]
 
