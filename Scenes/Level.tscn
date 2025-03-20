@@ -37,7 +37,7 @@ environment = SubResource("Environment_ua22j")
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, -0.104372, -0.994538, 0, 0.994538, -0.104372, 0, 0, -79.7356)
+transform = Transform3D(1, 0, 0, 0, -0.104372, -0.994538, 0, 0.994538, -0.104372, 0, 0, -428.95)
 mesh = SubResource("PlaneMesh_vywtw")
 surface_material_override/0 = SubResource("StandardMaterial3D_vb0n3")
 

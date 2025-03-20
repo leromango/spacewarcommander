@@ -3,11 +3,13 @@ class_name Enemy extends CharacterBody3D
 @onready var bulletPoint : Node3D = $BulletPoint
 @onready var beehaviourTree : BeehaveTree = $FirstEnemyBeahviourTree
 @export var bulletScene : PackedScene
-@export var movementSpeed : float = 20
+var movementSpeed : float
+@export var startingMovementSpeed : float = 0.05
 @export var maxHealth : float = 100
 @export var damage : float = 20
-@export var escape_threshold_health : float = 20
+@export var escape_threshold_health : float = 60
 var currentHealth : float
+var shouldFlee : bool = true
 
 func shoot(playerLocation : Vector3) -> bool:
 	look_at(playerLocation)
@@ -20,6 +22,7 @@ func shoot(playerLocation : Vector3) -> bool:
 	return true
 
 func _ready() -> void:
+	movementSpeed = startingMovementSpeed
 	currentHealth = maxHealth
 	var playerRef = get_parent().get_node_or_null("Player")
 	if playerRef == null:
@@ -28,7 +31,7 @@ func _ready() -> void:
 
 func moveToLocation(location : Vector3) -> void:
 	look_at(location)
-	set_global_position(global_position + ((location - global_position) * movementSpeed * get_physics_process_delta_time()))
+	set_global_position(global_position + ((location - global_position).normalized() * movementSpeed))
 	
 func is_alive() -> bool:
 	return currentHealth > 0
@@ -40,13 +43,20 @@ func _process(delta: float) -> void:
 	pass
 
 func die() -> void:
-	pass
+	# TODO: stuff here
+	queue_free()
 
 func reduceHealth(damage: float) -> void:
 	currentHealth -= damage
-	print(name + " New Health " + str(currentHealth))
 	if (currentHealth <= 0):
 		die()
 		return
-	if (currentHealth <= escape_threshold_health):
+	print(name + " New Health " + str(currentHealth))
+	if shouldFlee and currentHealth <= escape_threshold_health:
+		shouldFlee = false
+		$HostileEnableTimer.start()
 		$Blackboard.set_value("ShouldBeHostile", false)
+
+
+func _on_hostile_enable_timer_timeout() -> void:
+	shouldFlee = true

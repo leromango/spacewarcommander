@@ -14,6 +14,12 @@ public partial class Player : CharBase
     private SpotLight3D _flashlight;
     private Timer _flashlightTimer;
 
+    private Timer _LowHealthBuzzerTimer;
+    [Export] private float _buzzerTimerMin = 0.1f;
+    [Export] private float _buzzerTimerMax = 1f;
+    [Export] private float _buzzerHealthThreshold = 50f;
+    private Timer _SendMessageTimer;
+
     private MeshInstance3D _reloadBlock;
     private Transform3D _defaultReloadBlockTransform;
     private Transform3D _reloadBlockTransform;
@@ -40,6 +46,8 @@ public partial class Player : CharBase
     private Material _matHealthOn;
     private Material _matHealthOff;
 
+    private Node _serCommNode;
+
     public enum EShotDirectionIndication
     {
         FORWARD,
@@ -49,21 +57,31 @@ public partial class Player : CharBase
         ALL,
     }
 
+    private float GetBuzzerBuzzTime() {
+        return _buzzerTimerMin + ((_buzzerTimerMax - _buzzerTimerMin) / (_buzzerHealthThreshold - 10)) * (CurrHealth - 10);
+    }
+
     public override void reduceHealth(float amount, Vector3 hitLocation)
     {
         base.reduceHealth(amount, hitLocation);
-        EShotDirectionIndication direction = GetShotDirectionIndicator(hitLocation);
-        GD.Print("DIRECTION SHOT: " + direction.ToString());
+        if (CurrHealth <= _buzzerHealthThreshold && _LowHealthBuzzerTimer.TimeLeft <= 0) {
+            // GD.Print("SETTING BuZZER");
+            _LowHealthBuzzerTimer.Start(GetBuzzerBuzzTime());
+        }
+        SendLightIndicator(GetShotDirectionIndicator(hitLocation));
+        // GD.Print("DIRECTION SHOT: " + ((int)direction).ToString());
     }
 
     public override void _Ready()
     {
         base._Ready();
-
+        _serCommNode = GetNode("SerComm");
         _bulletPoint = GetNode<Node3D>("BulletPoint");
         _flashlight = GetNode<SpotLight3D>("Flashlight");
         _flashlightTimer = GetNode<Timer>("Timer");
-        
+        _LowHealthBuzzerTimer = GetNode<Timer>("LowHealthBuzzerTimer");
+        _SendMessageTimer = GetNode<Timer>("SerComm/SendMessageTimer");
+
         _reloadBlock = GetNode<MeshInstance3D>("Meshes/Reload");
         _defaultReloadBlockTransform = _reloadBlock.GetTransform();
         _reloadBlockTransform = new Transform3D(
@@ -95,25 +113,38 @@ public partial class Player : CharBase
         UpdateHealthSegments();
     }
 
+    public void move(float direction)
+    {
+        SetRotation(direction * _rotationSpeed);
+    }
+
     public override void _Process(double delta)
     {
-        if (Input.IsActionPressed("TurnRight"))
-            SetRotation(-_rotationSpeed);
-        if (Input.IsActionPressed("TurnLeft"))
-            SetRotation(_rotationSpeed);
+        //if (Input.IsActionPressed("TurnRight"))
+            //SetRotation(-_rotationSpeed);
+        //if (Input.IsActionPressed("TurnLeft"))
+            //SetRotation(_rotationSpeed);
         
         RegenerateHealth(delta);
         UpdateHealthSegments();
     }
-    
+
+    public void changeRotationAxis() {
+        _rotAxis = !_rotAxis;
+    }
+
+    public void flashLight() {
+        _flashlightTimer.Start();
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("SwitchDirection"))
-            _rotAxis = !_rotAxis;
+            changeRotationAxis();
         if (@event.IsActionPressed("Shoot"))
             Shoot();
         if (@event.IsActionPressed("Lights"))
-            _flashlightTimer.Start();
+            flashLight();
         if (@event.IsActionPressed("Reload"))
             Reload();
 
@@ -142,6 +173,7 @@ public partial class Player : CharBase
     
     protected override void Shoot()
     {
+        if (_currBullets <= 0) return;
         base.Shoot();
         _currBullets--;
         UpdateAmmoIndicator();
@@ -180,6 +212,7 @@ public partial class Player : CharBase
     private void Eject()
     {
         _reloadBlock.SetTransform(_reloadBlockTransform);
+        SendReloadPrompt();
     }
     
     private void _on_timer_timeout()
@@ -196,7 +229,17 @@ public partial class Player : CharBase
         _flashlightTimer.SetWaitTime(_flashlightTimer.GetWaitTime() + 0.02);
         _flickerAmount++;
     }
-    
+
+    private void _on_low_health_buzzer_timer_timeout()
+    {
+        if (CurrHealth > _buzzerHealthThreshold) return;
+        SendBuzzerBuzz();
+        float aa = GetBuzzerBuzzTime();
+        _LowHealthBuzzerTimer.Start(aa);
+        // GD.Print(aa);
+    }
+
+
     private void CreateAmmoSegments()
     {
         _ammoContainer = new Node3D { Name = "AmmoContainer" };
@@ -222,6 +265,11 @@ public partial class Player : CharBase
             _ammoContainer.AddChild(bulletBox);
             _bulletSegments.Add(bulletBox);
         }
+    }
+
+    public void SetDistribution(float dist) {
+        this._distribution = dist;
+        ComputeDistribution();
     }
 
     private void ComputeDistribution()
@@ -325,5 +373,27 @@ public partial class Player : CharBase
         }
 
         return indicatorResult;
+    }
+
+    public void SendReloadPrompt()
+    {
+        _serCommNode.Call("send_reload_prompt");
+    }
+
+    public void SendBuzzerBuzz()
+    {
+        _serCommNode.Call("send_buzzer_buzz");
+    }
+
+    public void SendLightIndicator(EShotDirectionIndication direction)
+    {
+        _serCommNode.Call("send_light_indicator", ((int)direction));
+    }
+
+
+    public void _on_send_message_timer_timeout() {
+        if (CurrHealth <= 0) return;
+        _serCommNode.Call("write_message");
+        _SendMessageTimer.Start();
     }
 }

@@ -61,7 +61,9 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_7kv5a")
 bulletScene = ExtResource("2_jvtvx")
-movementSpeed = 0.05
+startingMovementSpeed = 0.5
+maxHealth = 80.0
+damage = 5.0
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, -1.19209e-05, 100, 0, -100, -1.19209e-05, -5.58794e-09, 0, -1.19209e-07)
@@ -90,7 +92,10 @@ offset_right = 201.0
 offset_bottom = 23.0
 script = ExtResource("5_se78t")
 
-[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard", "actor") instance=ExtResource("3_sbn4f")]
+[node name="FirstEnemyBeahviourTree" parent="." node_paths=PackedStringArray("blackboard") instance=ExtResource("3_sbn4f")]
 actor_node_path = NodePath("..")
 blackboard = NodePath("../Blackboard")
-actor = NodePath("..")
+
+[node name="HostileEnableTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="HostileEnableTimer" to="." method="_on_hostile_enable_timer_timeout"]

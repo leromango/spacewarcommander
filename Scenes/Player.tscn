@@ -647,6 +647,16 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -29.78
 wait_time = 0.1
 
 [node name="SerComm" type="SerComm" parent="."]
+port = 1
+baud_rate = 256000
 script = ExtResource("4_rb3om")
 
+[node name="SendMessageTimer" type="Timer" parent="SerComm"]
+wait_time = 0.1
+autostart = true
+
+[node name="LowHealthBuzzerTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SerComm/SendMessageTimer" to="." method="_on_send_message_timer_timeout"]
+[connection signal="timeout" from="LowHealthBuzzerTimer" to="." method="_on_low_health_buzzer_timer_timeout"]

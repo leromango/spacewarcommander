@@ -12,9 +12,9 @@ int reloadPin = 6;
 // Switch
 int switchPin = 2;
 
-int fwdLightPin = 9;
-int backLightPin = 8;
 int leftLightPin = 7;
+int backLightPin = 8;
+int fwdLightPin = 9;
 int rightLightPin  = 10;
 
 int servoControlPin = 11; //PWM
@@ -26,8 +26,30 @@ bool isReloading = false;
 long long unsigned int reloadStartTime = 0;
 long long unsigned int reloadDuration = 500;
 
+long long unsigned int buzzerStartTime = 0;
+long long unsigned int buzzerDuration = 500;
+
+long long unsigned int indicatorDuration = 500;
+long long unsigned int indicatorStartTime = 0;
+
+bool bShouldBuzz = false;
+
+bool bIsIndicatorOn = false;
+
+enum ELightIndication {
+  FORWARD,
+  LEFT,
+  RIGHT,
+  BACK,
+  ALL,
+  NONE,
+};
+
+ELightIndication currentIndicator;
+
 void setup() {
-  Serial.begin(9600);
+  currentIndicator = ELightIndication::NONE;
+  Serial.begin(256000);
   
   pinMode(knobPin, INPUT);
   pinMode(flashlightSensorPin, INPUT);
@@ -43,18 +65,78 @@ void setup() {
   pinMode(buzzerPin, OUTPUT);
 
   reloadServo.attach(servoControlPin);
-  reloadServo.write(50);  
+  reloadServo.write(50);
 
 }
 
 void loop() {
+  int reloadValue = 0;
+  String incomingString = Serial.readString();
+  // Serial.println(incomingString);
+    if (incomingString.indexOf("b") != -1) {
+      bShouldBuzz = true;
+    }
+    if (incomingString.indexOf("r") != -1) {
+      reloadValue = 1;
+    }
+    int indexLightIndication = incomingString.indexOf("a");
+    if (indexLightIndication != -1) {
+      currentIndicator = static_cast<ELightIndication>((int)(incomingString.charAt(indexLightIndication+1)  - '0'));
+    }
+  
+  //while(Serial.available() > 0) {
+    
+    
+  //}
+
+  switch (currentIndicator) {
+    case ELightIndication::FORWARD:
+      digitalWrite(fwdLightPin, HIGH);
+      break;
+    case ELightIndication::RIGHT:
+      digitalWrite(rightLightPin, HIGH);
+      break;
+    case ELightIndication::BACK:
+      digitalWrite(backLightPin, HIGH);
+      break;
+    case ELightIndication::LEFT:
+      digitalWrite(leftLightPin, HIGH);
+      break;
+    case ELightIndication::ALL:
+      digitalWrite(leftLightPin, HIGH);
+      digitalWrite(backLightPin, HIGH);
+      digitalWrite(rightLightPin, HIGH);
+      digitalWrite(fwdLightPin, HIGH);
+      break;
+    default:
+      break;
+  }
+  if (bShouldBuzz && millis() - indicatorStartTime >= indicatorDuration) {
+    bShouldBuzz = false;
+  }
+  if (bShouldBuzz && millis() - indicatorStartTime >= indicatorDuration) {
+    
+    bIsIndicatorOn = false;
+    currentIndicator = ELightIndication::NONE;
+  }
+  delay(500);
+  digitalWrite(fwdLightPin, LOW);
+  digitalWrite(rightLightPin, LOW);
+  digitalWrite(backLightPin, LOW);
+  digitalWrite(leftLightPin, LOW);
+
+  delay(100);
+  // INPUT END
+  // OUTPUT 
+  
+   
   int knobValue = analogRead(knobPin);
   int flashlightValue = analogRead(flashlightSensorPin);
   
   int shootState = digitalRead(shootButtonPin);
   int moveState = digitalRead(moveButtonPin);
   int changeDirectionState = digitalRead(changeDirectionButtonPin);
-  int reloadValue = digitalRead(reloadPin);
+  //int reloadValue = digitalRead(reloadPin);
 
   int switchState = digitalRead(switchPin);
 
@@ -69,6 +151,11 @@ void loop() {
     isReloading = false;
   }
 
+  
+  if (bShouldBuzz) {
+    tone(buzzerPin, 1000);
+  }
+  /*
   digitalWrite(fwdLightPin, HIGH);
   delay(100);
   digitalWrite(rightLightPin, HIGH);
@@ -85,12 +172,14 @@ void loop() {
   digitalWrite(backLightPin, LOW);
   delay(100);
   digitalWrite(leftLightPin, LOW);
-  tone(buzzerPin, 1000); // Send 1KHz sound signal...
-  delay(1000);
 
-  noTone(buzzerPin);
+  
+  //tone(buzzerPin, 1000); // Send 1KHz sound signal...
+  //delay(1000);
 
-  Serial.print(knobValue);
+  //noTone(buzzerPin);
+  */
+  /*Serial.print(knobValue);
   Serial.print(",");
   Serial.print(shootState);
   Serial.print(",");
@@ -103,8 +192,13 @@ void loop() {
   Serial.print(flashlightValue);
   Serial.print(",");
   Serial.println(reloadValue);
-  
-  
-  delay(100);
-}
+  */
 
+
+
+  Serial.println(String(knobValue) + "," + String(shootState) + "," + String(moveState) + "," + String(switchState) + "," + String(changeDirectionState) + "," + String(flashlightValue) + "," + String(reloadValue));
+  
+  
+  
+  delay(300);
+}

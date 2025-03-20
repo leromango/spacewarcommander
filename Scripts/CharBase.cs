@@ -24,7 +24,7 @@ public partial class CharBase : CharacterBody3D
 		CurrHealth -= amount;
 		if (CurrHealth < 0)
 			Die();
-		GD.Print(Name + " New Health: " + CurrHealth);
+		// GD.Print(Name + " New Health: " + CurrHealth);
 	}
 
 	protected virtual void Shoot() { }

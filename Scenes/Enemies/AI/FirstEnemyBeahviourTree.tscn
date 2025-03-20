@@ -38,15 +38,20 @@ script = ExtResource("6_tqusx")
 
 [node name="MoveToRandomLocation" type="Node" parent="SelectorComposite/Hostile"]
 script = ExtResource("7_y6481")
-distanceAway = 80.0
-randomnessOfDestinationRange = 200.0
+distanceAway = 50.0
+randomnessOfDestinationRange = 20.0
 acceptibleRadius = 50.0
+maxDistanceFromPlayer = 400.0
 
 [node name="Flee" type="Node" parent="SelectorComposite"]
 script = ExtResource("3_0q4x4")
 
 [node name="RunFromPlayerAction" type="Node" parent="SelectorComposite/Flee"]
 script = ExtResource("7_vd004")
+distanceAway = 80.0
+randomnessOfDestinationRange = 50.0
+acceptibleRadius = 50.0
+fleeSpeed = 0.7
 
 [node name="SetHostile" type="Node" parent="SelectorComposite/Flee"]
 script = ExtResource("11_ig7d7")

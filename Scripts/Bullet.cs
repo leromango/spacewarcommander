@@ -30,8 +30,12 @@ public partial class Bullet : StaticBody3D
     public void _on_bullet_collision_body_entered(Node3D body)
     {
         // When bullet collides with something
-        if (body is StaticBody3D || ownerNode.Name.Equals(body.Name))
-            return;
+        if (body == null || ownerNode.IsQueuedForDeletion()) return;
+        
+        if (ownerNode != null) {
+            if (body is StaticBody3D || ownerNode.Name.Equals(body.Name))
+                return;
+        }
         if (body is CharBase)
             ((CharBase)body).reduceHealth(damage, GlobalPosition);
         else
