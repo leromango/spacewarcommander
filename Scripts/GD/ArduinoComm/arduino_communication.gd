@@ -67,8 +67,7 @@ func changeAxis() -> void:
 	parentPlayerNode.changeRotationAxis()
 
 func resourceDistribution(dist: float) -> void:
-	pass
-	# parentPlayerNode.SetDistribution(dist)
+	parentPlayerNode.SetDistribution(dist/1000)
 
 func setFlashlightValue(value : float) -> void:
 	pass

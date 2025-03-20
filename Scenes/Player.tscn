@@ -648,7 +648,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -29.78
 wait_time = 0.1
 
 [node name="SerComm" type="SerComm" parent="."]
-port = 1
+port = 4
 baud_rate = 256000
 script = ExtResource("4_rb3om")
 
