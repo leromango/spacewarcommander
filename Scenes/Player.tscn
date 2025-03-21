@@ -649,7 +649,7 @@ wait_time = 0.1
 
 [node name="SerComm" type="SerComm" parent="."]
 port = 1
-baud_rate = 256000
+baud_rate = 57600
 script = ExtResource("4_rb3om")
 
 [node name="SendMessageTimer" type="Timer" parent="SerComm"]
