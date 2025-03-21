@@ -13,7 +13,6 @@ export_presets.cfg
 .DS_Store
 Thumbs.db
 ehthumbs.db
-Icon?
 Desktop.ini
 
 # Linux temporary files
@@ -30,6 +29,8 @@ Desktop.ini
 *.exe
 *.dll
 *.pdb
+
+*.svg
 
 # Linux Godot build targets
 *.x86_64
@@ -68,6 +69,7 @@ obj/
 
 # VSCode settings (if you use it)
 .vscode/
+.vs/
 
 # JetBrains Rider / IntelliJ
 .idea/
