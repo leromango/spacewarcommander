@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "NJLbLBWzbb6M5eRVn7R96v+GlMxc8tr7kGXV+opMo6zOQa66vZ4D3y2UFFxY0i9FUnIRBURNldJgQ2OMQb0c4A==",
+  "dgSpecHash": "T1ivZcV3q/w=",
   "success": true,
-  "projectFilePath": "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj",
+  "projectFilePath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\pooya\\.nuget\\packages\\godot.sourcegenerators\\4.3.0-rc.3\\godot.sourcegenerators.4.3.0-rc.3.nupkg.sha512",
-    "C:\\Users\\pooya\\.nuget\\packages\\godotsharp\\4.3.0-rc.3\\godotsharp.4.3.0-rc.3.nupkg.sha512",
-    "C:\\Users\\pooya\\.nuget\\packages\\godotsharpeditor\\4.3.0-rc.3\\godotsharpeditor.4.3.0-rc.3.nupkg.sha512"
+    "/Users/leromango/.nuget/packages/godot.sourcegenerators/4.3.0/godot.sourcegenerators.4.3.0.nupkg.sha512",
+    "/Users/leromango/.nuget/packages/godotsharp/4.3.0/godotsharp.4.3.0.nupkg.sha512",
+    "/Users/leromango/.nuget/packages/godotsharpeditor/4.3.0/godotsharpeditor.4.3.0.nupkg.sha512",
+    "/Users/leromango/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/leromango/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
   ],
   "logs": []
 }

@@ -29,8 +29,8 @@ long long unsigned int reloadDuration = 500;
 long long unsigned int buzzerStartTime = 0;
 long long unsigned int buzzerDuration = 10;
 
-long long unsigned int indicatorDuration = 100;
-long long unsigned int indicatorStartTime = 0;
+long long unsigned int indicatorDuration = 50;
+long long unsigned int indicatorStartTime = 500;
 
 bool bShouldBuzz = false;
 
@@ -49,7 +49,7 @@ ELightIndication currentIndicator;
 
 void setup() {
   currentIndicator = ELightIndication::NONE;
-  Serial.begin(57600);
+  Serial.begin(256000);
   Serial.setTimeout(50);
   
   pinMode(knobPin, INPUT);
@@ -72,53 +72,59 @@ void setup() {
 
 void loop() {
   long long unsigned currentMillis = millis();
+  int reloadValue = 0;
+  
   
   while(Serial.available() > 0) {
     String incomingString = Serial.readString();
+  // Serial.println(incomingString);
     int buzzerIndex = incomingString.indexOf("b");
-    int indexLightIndication = incomingString.indexOf("a");
     if (buzzerIndex != -1) {
+      // buzzerDuration = (long long) incomingString.substring(buzzerIndex, incomingString.indexOf("b", 1)).toInt();
       bShouldBuzz = true;
       buzzerStartTime = currentMillis;
     }
     if (incomingString.indexOf("r") != -1) {
-      isReloading = true;
+      reloadValue = 1;
       reloadStartTime = currentMillis;
     }
-    if (indexLightIndication != -1) {
+    int indexLightIndication = incomingString.indexOf("a");
+    if (indexLightIndication != -1 && indicatorStartTime < currentMillis) {
       currentIndicator = static_cast<ELightIndication>(String(incomingString.charAt(indexLightIndication+1)).toInt());
       indicatorStartTime = currentMillis;
       bIsIndicatorOn = true;
     }
+    
   }
-  if (bIsIndicatorOn) {
-    switch (currentIndicator) {
-      case ELightIndication::FORWARD:
-        digitalWrite(fwdLightPin, HIGH);
-        break;
-      case ELightIndication::RIGHT:
-        digitalWrite(rightLightPin, HIGH);
-        break;
-      case ELightIndication::BACK:
-        digitalWrite(backLightPin, HIGH);
-        break;
-      case ELightIndication::LEFT:
-        digitalWrite(leftLightPin, HIGH);
-        break;
-      case ELightIndication::ALL:
-        digitalWrite(leftLightPin, HIGH);
-        digitalWrite(backLightPin, HIGH);
-        digitalWrite(rightLightPin, HIGH);
-        digitalWrite(fwdLightPin, HIGH);
-        break;
-      default:
-        break;
-    }
+// digitalWrite(backLightPin, HIGH);
+ // if (currentIndicator == 0) {
+    //digitalWrite(fwdLightPin, HIGH);
+  //}
+  switch (currentIndicator) {
+    case ELightIndication::FORWARD:
+      digitalWrite(fwdLightPin, HIGH);
+      break;
+    case ELightIndication::RIGHT:
+      digitalWrite(rightLightPin, HIGH);
+      break;
+    case ELightIndication::BACK:
+      digitalWrite(backLightPin, HIGH);
+      break;
+    case ELightIndication::LEFT:
+      digitalWrite(leftLightPin, HIGH);
+      break;
+    case ELightIndication::ALL:
+      digitalWrite(leftLightPin, HIGH);
+      digitalWrite(backLightPin, HIGH);
+      digitalWrite(rightLightPin, HIGH);
+      digitalWrite(fwdLightPin, HIGH);
+      break;
+    default:
+      break;
   }
-  
-  if (bShouldBuzz) tone(buzzerPin, 1000);
-  else noTone(buzzerPin);  
-  
+  if (!bShouldBuzz) {
+    noTone(buzzerPin);  
+  }
   if (bShouldBuzz && currentMillis - buzzerStartTime >= buzzerDuration) {
     buzzerStartTime = 0;
     bShouldBuzz = false;
@@ -144,7 +150,7 @@ void loop() {
   int shootState = digitalRead(shootButtonPin);
   int moveState = digitalRead(moveButtonPin);
   int changeDirectionState = digitalRead(changeDirectionButtonPin);
-  int reloadValue = digitalRead(reloadPin);
+  //int reloadValue = digitalRead(reloadPin);
 
   int switchState = digitalRead(switchPin);
 
@@ -159,6 +165,54 @@ void loop() {
     isReloading = false;
     reloadStartTime = 0;
   }
+
+  
+  if (bShouldBuzz) {
+    //buzzerStartTime++;
+    tone(buzzerPin, 100);
+    // bShouldBuzz = false;
+  }
+  if (bIsIndicatorOn) {
+    //indicatorStartTime++;  
+  }
+  /*
+  digitalWrite(fwdLightPin, HIGH);
+  delay(100);
+  digitalWrite(rightLightPin, HIGH);
+  delay(100);
+  digitalWrite(backLightPin, HIGH);
+  delay(100);
+  digitalWrite(leftLightPin, HIGH);
+  delay(100);
+
+  digitalWrite(fwdLightPin, LOW);
+  delay(100);
+  digitalWrite(rightLightPin, LOW);
+  delay(100);
+  digitalWrite(backLightPin, LOW);
+  delay(100);
+  digitalWrite(leftLightPin, LOW);
+
+  
+  //tone(buzzerPin, 1000); // Send 1KHz sound signal...
+  //delay(1000);
+
+  //noTone(buzzerPin);
+  */
+  /*Serial.print(knobValue);
+  Serial.print(",");
+  Serial.print(shootState);
+  Serial.print(",");
+  Serial.print(moveState);
+  Serial.print(",");
+  Serial.print(switchState);
+  Serial.print(",");
+  Serial.print(changeDirectionState);
+  Serial.print(",");
+  Serial.print(flashlightValue);
+  Serial.print(",");
+  Serial.println(reloadValue);
+  */
 
 
 

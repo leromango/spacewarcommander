@@ -30,8 +30,6 @@ Desktop.ini
 *.dll
 *.pdb
 
-*.svg
-
 # Linux Godot build targets
 *.x86_64
 *.x86

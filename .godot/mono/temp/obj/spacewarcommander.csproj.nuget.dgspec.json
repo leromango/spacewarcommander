@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj": {}
+    "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {}
   },
   "projects": {
-    "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj": {
+    "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj",
+        "projectUniqueName": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
         "projectName": "spacewarcommander",
-        "projectPath": "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj",
-        "packagesPath": "C:\\Users\\pooya\\.nuget\\packages\\",
-        "outputPath": "E:\\IAT\\267\\Project\\spacewarcommander\\.godot\\mono\\temp\\obj\\",
+        "projectPath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
+        "packagesPath": "/Users/leromango/.nuget/packages/",
+        "outputPath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pooya\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/leromango/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -38,7 +32,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net6.0": {
@@ -46,15 +46,15 @@
           "dependencies": {
             "Godot.SourceGenerators": {
               "target": "Package",
-              "version": "[4.3.0-rc.3, )"
+              "version": "[4.3.0, )"
             },
             "GodotSharp": {
               "target": "Package",
-              "version": "[4.3.0-rc.3, )"
+              "version": "[4.3.0, )"
             },
             "GodotSharpEditor": {
               "target": "Package",
-              "version": "[4.3.0-rc.3, )"
+              "version": "[4.3.0, )"
             }
           },
           "imports": [
@@ -68,12 +68,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.36, 6.0.36]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }
