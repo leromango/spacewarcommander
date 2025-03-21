@@ -1,1 +1,93 @@
+# Godot-specific folders and files
+.import/
+.export/
+*.import
+*.tmp
+*.translation
+export_presets.cfg
+
+# Godot 4 specific cache
+.godot/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux temporary files
+*~
+.nfs*
+
+# Windows crash logs
+*.stackdump
+
+# macOS application files
+*.DS_Store
+
+# Windows Godot build targets
+*.exe
+*.dll
+*.pdb
+
 *.svg
+
+# Linux Godot build targets
+*.x86_64
+*.x86
+
+# macOS Godot build targets
+*.dmg
+*.app
+*.zip
+
+# Android build output
+*.apk
+*.aab
+*.keystore
+
+# iOS build folders
+ios/build/
+ios/.godot/
+
+# C# / Mono (if using C# in Godot)
+.mono/
+*.csproj
+*.sln
+*.user
+*.pidb
+*.mdb
+*.dll
+*.exe
+*.pdb
+*.cache/
+obj/
+
+# Godot addons (optional - ignore if addons are not core to your project)
+# You can remove this line if you’re developing your own addons and want them in Git
+# addons/
+
+# VSCode settings (if you use it)
+.vscode/
+.vs/
+
+# JetBrains Rider / IntelliJ
+.idea/
+*.sln.iml
+
+# Godot backups (optional)
+*.godot.old
+*.backup
+
+# Godot 4.2+ optional new build cache folder
+.build/
+
+# Temporary log files (if created by your dev environment)
+*.log
+
+# Unity-like naming (if working in hybrid pipelines, rare but happens)
+Library/
+Temp/
+Obj/
+Build/
+Builds/
