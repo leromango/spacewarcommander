@@ -1,0 +1,69 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "spacewarcommander/1.0.0": {
+        "dependencies": {
+          "Godot.SourceGenerators": "4.3.0-rc.3",
+          "GodotSharp": "4.3.0-rc.3",
+          "GodotSharpEditor": "4.3.0-rc.3"
+        },
+        "runtime": {
+          "spacewarcommander.dll": {}
+        }
+      },
+      "Godot.SourceGenerators/4.3.0-rc.3": {},
+      "GodotSharp/4.3.0-rc.3": {
+        "runtime": {
+          "lib/net6.0/GodotSharp.dll": {
+            "assemblyVersion": "4.3.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        }
+      },
+      "GodotSharpEditor/4.3.0-rc.3": {
+        "dependencies": {
+          "GodotSharp": "4.3.0-rc.3"
+        },
+        "runtime": {
+          "lib/net6.0/GodotSharpEditor.dll": {
+            "assemblyVersion": "4.3.0.0",
+            "fileVersion": "4.3.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "spacewarcommander/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Godot.SourceGenerators/4.3.0-rc.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sR0z5xWXvpam7yyI4FToikt4Ty8QVAdMerOChB4dJaPKrvA6A3edErjLE0wBJoOr4HAOUG2St1mQ+GgHKRrWAA==",
+      "path": "godot.sourcegenerators/4.3.0-rc.3",
+      "hashPath": "godot.sourcegenerators.4.3.0-rc.3.nupkg.sha512"
+    },
+    "GodotSharp/4.3.0-rc.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-t6d3mc5ccl7kElpNcawDuWbm7tZ8MsZFdY9fuz9WK65eNkCombXeVhxAkbWA+WIKiUa0GcLQIK+4ZUHcnZsvTQ==",
+      "path": "godotsharp/4.3.0-rc.3",
+      "hashPath": "godotsharp.4.3.0-rc.3.nupkg.sha512"
+    },
+    "GodotSharpEditor/4.3.0-rc.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aeTpUqojY07Yqt7SfRK7wQgyCjDBymjEeiq8Q6r9WZjj8q9pw/wgk6UVqD36ES3GMCv4AOi6s1vacsphpVl77A==",
+      "path": "godotsharpeditor/4.3.0-rc.3",
+      "hashPath": "godotsharpeditor.4.3.0-rc.3.nupkg.sha512"
+    }
+  }
+}

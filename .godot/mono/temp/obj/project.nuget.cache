@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "NJLbLBWzbb6M5eRVn7R96v+GlMxc8tr7kGXV+opMo6zOQa66vZ4D3y2UFFxY0i9FUnIRBURNldJgQ2OMQb0c4A==",
+  "success": true,
+  "projectFilePath": "E:\\IAT\\267\\Project\\spacewarcommander\\spacewarcommander.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pooya\\.nuget\\packages\\godot.sourcegenerators\\4.3.0-rc.3\\godot.sourcegenerators.4.3.0-rc.3.nupkg.sha512",
+    "C:\\Users\\pooya\\.nuget\\packages\\godotsharp\\4.3.0-rc.3\\godotsharp.4.3.0-rc.3.nupkg.sha512",
+    "C:\\Users\\pooya\\.nuget\\packages\\godotsharpeditor\\4.3.0-rc.3\\godotsharpeditor.4.3.0-rc.3.nupkg.sha512"
+  ],
+  "logs": []
+}

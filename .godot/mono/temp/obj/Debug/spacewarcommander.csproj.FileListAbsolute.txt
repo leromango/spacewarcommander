@@ -1,0 +1,17 @@
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\spacewarcommander.deps.json
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\spacewarcommander.runtimeconfig.json
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\spacewarcommander.dll
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\spacewarcommander.pdb
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\GodotSharp.dll
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.csproj.AssemblyReference.cache
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.AssemblyInfoInputs.cache
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.AssemblyInfo.cs
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.csproj.CoreCompileInputs.cache
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.csproj.CopyComplete
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.dll
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\refint\spacewarcommander.dll
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.pdb
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\spacewarcommander.genruntimeconfig.cache
+E:\IAT\267\PROJECT\SPACEWARCOMMANDER\.godot\mono\temp\obj\Debug\ref\spacewarcommander.dll
