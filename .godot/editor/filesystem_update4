@@ -1,6 +1,0 @@
-res://Scenes/Player.tscn
-res://Scenes/Enemies/FirstEnemy.tscn
-res://Scenes/Enemies/AI/FirstEnemyBeahviourTree.tscn
-res://Scenes/bullets/EnemyBullet.tscn
-res://Scenes/bullets/PlayerBullet.tscn
-res://Scenes/Level.tscn
