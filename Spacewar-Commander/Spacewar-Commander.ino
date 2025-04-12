@@ -1,6 +1,5 @@
 #include <Servo.h>
 
-// COMMENTS FOR PIN DEFINITIONS ARE AI BEWARE
 // --- Pin Definitions ---
 // Analog sensor inputs
 const int knobPin = A0;             // Potentiometer: resource distribution
