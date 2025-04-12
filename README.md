@@ -29,13 +29,13 @@ Main part of the simulation, responsible for managing all logic, processing all 
 - `Enemy.gd` – has methods that call various action scripts to move the enemies and make them shoot, avoid the player, etc.
 
 **File structure for it**
-spacewarcommander/
+`spacewarcommander/
 ├── Spacewar-Commander/
 │   └── Spacewar-Commander.ino
 └── Scripts/
     ├── Player.cs
     └── GD/
-        └── Enemy.gd
+        └── Enemy.gd`
 
 ---
 
