@@ -1,53 +1,72 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 public partial class Player : CharBase
 {
-    [Export] private float _rotationSpeed = 0.01f;
+    [Export] float  shootAudioDB = 5f;
+    [Export] float  deathAudioDB = 5f;
+    [Export] private AudioStream shootSound;
+    [Export] private AudioStream deathSound;
+    private Timer flashlightAvailableDelayTimer;
+    // Sensivity
+    [Export] private float _rotationSpeed = 0.1f; // Rotation speed for the player
+    // --- Basic shooting and energy properties ---
+    [Export] private bool CanUseKeyboardToPlay = false;
     [Export] private PackedScene _bulletScene;
     [Export] private int _maxBullets = 10;
     private int _currBullets = 10;
-    
+
+    private bool bCanFlashlightTurnOn = true;
+    private float _flashlightEnergyLeft = 0;
+    [Export] private float _maximumFlashlightEnergy = 20f;
+    [Export] private float _flashlightEnergyRecoveryRate = 0.2f;
+    [Export] private float _flashlightEnergyDrainRate = 0.4f;
+
     private Node3D _bulletPoint;
     private SpotLight3D _flashlight;
     private Timer _flashlightTimer;
-
     private Timer _LowHealthBuzzerTimer;
     [Export] private float _buzzerTimerMin = 0.1f;
     [Export] private float _buzzerTimerMax = 1f;
     [Export] private float _buzzerHealthThreshold = 50f;
     private Timer _SendMessageTimer;
 
+    // --- Reload and ammo indicators ---
     private MeshInstance3D _reloadBlock;
     private Transform3D _defaultReloadBlockTransform;
     private Transform3D _reloadBlockTransform;
     
     private Node3D _ammoContainer;
     private List<MeshInstance3D> _bulletSegments = new List<MeshInstance3D>();
-
-    private bool _rotAxis = true;
-    private float _distribution = 0.5f;
-    private int _flickerAmount;
-
+    // Materials used for ammo indication.
     private Material _matAmmoOn;
     private Material _matAmmoOff;
 
-    private MeshInstance3D _damageIndicator;
-    private MeshInstance3D _healthIndicator;
-    
+    // --- Scoring and UI ---
+    private int CurrentScore = 0;
+    private StandardMaterial3D FlashlightEnergyIndicatorMat;
+    private Label3D ScoreAmountLabel;
+
+    // --- Health and damage UI ---
     private Vector3 _defaultDamageScale;
     private Vector3 _defaultHealthScale;
-
+    private MeshInstance3D _damageIndicator;
+    private MeshInstance3D _healthIndicator;
     private int _healthSegmentsCount = 10;
     private Node3D _healthContainer;
     private List<MeshInstance3D> _healthSegments = new List<MeshInstance3D>();
     private Material _matHealthOn;
     private Material _matHealthOff;
+    private float _distribution;  // Resource distribution value
 
+    // --- Communication node ---
     private Node _serCommNode;
 
+    // --- Reload signal flag (to avoid sending multiple "r" commands), DIDNT HELP WITH FUCKING SERVO ---
+    private bool _reloadSignalSent = false;
+
+    // --- Shot direction indicator enum ---
     public enum EShotDirectionIndication
     {
         FORWARD,
@@ -57,25 +76,73 @@ public partial class Player : CharBase
         ALL,
     }
 
-    private float GetBuzzerBuzzTime() {
+    private float GetBuzzerBuzzTime()
+    {
         return _buzzerTimerMin + ((_buzzerTimerMax - _buzzerTimerMin) / (_buzzerHealthThreshold - 10)) * (CurrHealth - 10);
+    }
+
+    public int GetCurrentScore() { return CurrentScore; }
+
+    private void HandleFlashlightEnergy(float delta)
+    {
+        _flashlightEnergyLeft = Math.Clamp(_flashlight.Visible ? _flashlightEnergyLeft - (_flashlightEnergyDrainRate * delta)
+                                                             : _flashlightEnergyLeft + (_flashlightEnergyRecoveryRate * delta),
+                                          0f, _maximumFlashlightEnergy);
+        if (_flashlightEnergyLeft <= 2 && bCanFlashlightTurnOn) {
+            bCanFlashlightTurnOn = false;
+            flashlightAvailableDelayTimer.Start();
+            _flashlight.Visible = false;
+        }
+        FlashlightEnergyIndicatorMat.EmissionEnergyMultiplier = (3.85f / _maximumFlashlightEnergy) * _flashlightEnergyLeft;
+    }
+
+    public void SetScoreColour(Color color)
+    {
+        ScoreAmountLabel.Modulate = color;
+        ScoreAmountLabel.OutlineModulate = color;
+    }
+
+    public void toggleFlashlight(bool value) {
+        if (CurrHealth <= 0 || _flashlightEnergyLeft <= 0 || !bCanFlashlightTurnOn)
+            return;
+        _flashlight.Visible = value;
+    }
+    
+    public void _on_flashlight_available_delay_timer_timeout() {
+        bCanFlashlightTurnOn = true;
     }
 
     public override void reduceHealth(float amount, Vector3 hitLocation)
     {
         base.reduceHealth(amount, hitLocation);
-        if (CurrHealth <= _buzzerHealthThreshold) { // && _LowHealthBuzzerTimer.TimeLeft <= 0) {
+        if (CurrHealth <= _buzzerHealthThreshold)
+        {
             SendBuzzerBuzz();
-            // GD.Print("SETTING BuZZER");
             _LowHealthBuzzerTimer.Start(GetBuzzerBuzzTime());
         }
         SendLightIndicator(GetShotDirectionIndicator(hitLocation));
-        // GD.Print("DIRECTION SHOT: " + ((int)direction).ToString());
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        AudioStreamPlayer3D audioPlayer = new AudioStreamPlayer3D();
+        audioPlayer.Finished += () => audioPlayer.QueueFree();
+        audioPlayer.Stream = deathSound;
+        audioPlayer.VolumeDb = deathAudioDB;
+        audioPlayer.GlobalPosition = GlobalTransform.Origin;
+        GetParentNode3D().AddChild(audioPlayer);
+        audioPlayer.Play();
     }
 
     public override void _Ready()
     {
         base._Ready();
+        flashlightAvailableDelayTimer = GetNode<Timer>("FlashlightAvailableDelayTimer");
+        _flashlightEnergyLeft = _maximumFlashlightEnergy;
+        FlashlightEnergyIndicatorMat = (StandardMaterial3D)GetNode<MeshInstance3D>("Meshes/FlashlightEnergyIndicator").GetActiveMaterial(0);
+        ScoreAmountLabel = GetNode<Label3D>("Meshes/ScoreAmountLabel");
+
         _serCommNode = GetNode("SerComm");
         _bulletPoint = GetNode<Node3D>("BulletPoint");
         _flashlight = GetNode<SpotLight3D>("Flashlight");
@@ -100,11 +167,7 @@ public partial class Player : CharBase
         _defaultHealthScale = _healthIndicator.Scale;
         
         _matHealthOn = GD.Load<Material>("res://Materials/Mat_Health_ON.tres");
-        // _matHealthOff = GD.Load<Material>("res://Materials/Mat_Health_OFF.tres");
-        
-        // _matHealthOn = GD.Load<Material>("res://Materials/Mat_Ammo_ON.tres");
         _matHealthOff = GD.Load<Material>("res://Materials/Mat_Ammo_OFF.tres");
-        
 
         CreateAmmoSegments();
         UpdateAmmoIndicator();
@@ -114,71 +177,78 @@ public partial class Player : CharBase
         UpdateHealthSegments();
     }
 
-    public void move(float direction)
+    // --- Slider inputs for rotation ---
+    [Export] public int SliderXValue = 512; // Horizontal slider value (0 to 1024)
+    [Export] public int SliderYValue = 512; // Vertical slider value (0 to 1024)
+    [Export] private float _maxRotationOffset = Mathf.DegToRad(30); // Maximum rotation offset (radians)
+
+    /// <summary>
+    /// Maps a slider value to a rotation delta.
+    /// </summary>
+    private float MapSliderToRotation(int sliderValue, int lowThreshold, int highThreshold, float maxRotation)
     {
-        SetRotation(direction * _rotationSpeed);
+        if (sliderValue < lowThreshold)
+        {
+            // Map [0, lowThreshold] to [-maxRotation, 0]
+            return Mathf.Lerp(-maxRotation, 0, sliderValue / (float)lowThreshold);
+        }
+        else if (sliderValue > highThreshold)
+        {
+            // Map [highThreshold, 1024] to [0, maxRotation]
+            return Mathf.Lerp(0, maxRotation, (sliderValue - highThreshold) / (1024f - highThreshold));
+        }
+        return 0f;
     }
 
+    /// <summary>
+    /// Adds incremental rotation based on the slider values.
+    /// Horizontal (yaw) is controlled by SliderXValue and vertical (pitch) by SliderYValue.
+    /// Both axes are inverted so that:
+    ///   - For horizontal: a 0 value causes left rotation (decreasing yaw).
+    ///   - For vertical: a 0 value causes upward rotation (decreasing pitch).
+    /// </summary>
+    public void AddRotationFromSliders()
+    {
+        // Invert the X slider: multiply by -1 to flip the mapping.
+        float yawDelta = -MapSliderToRotation(SliderXValue, 490, 600, _maxRotationOffset) * _rotationSpeed;
+        // Invert the Y slider to make 0 generate a negative pitch (look up)
+        float pitchDelta = -MapSliderToRotation(SliderYValue, 490, 600, _maxRotationOffset) * _rotationSpeed;
+
+        Rotation = new Vector3(Rotation.X, Rotation.Y + yawDelta, Rotation.Z - pitchDelta);
+    }
+    
+    public void UpdateRotation()
+    {
+        AddRotationFromSliders();
+    }
+    
     public override void _Process(double delta)
     {
-        //if (Input.IsActionPressed("TurnRight"))
-            //SetRotation(-_rotationSpeed);
-        //if (Input.IsActionPressed("TurnLeft"))
-            //SetRotation(_rotationSpeed);
-        
+        if (CurrHealth <= 0)
+            return;
         RegenerateHealth(delta);
         UpdateHealthSegments();
+        HandleFlashlightEnergy((float)delta);
     }
 
-    public void changeRotationAxis() {
-        _rotAxis = !_rotAxis;
-    }
-
-    public void flashLight() {
-        _flashlightTimer.Start();
-    }
-
-    public override void _Input(InputEvent @event)
+    public override void _PhysicsProcess(double delta)
     {
-        if (@event.IsActionPressed("SwitchDirection"))
-            changeRotationAxis();
-        if (@event.IsActionPressed("Shoot"))
-            Shoot();
-        if (@event.IsActionPressed("Lights"))
-            flashLight();
-        if (@event.IsActionPressed("Reload"))
-            Reload();
+        base._PhysicsProcess(delta);
+        if (CurrHealth <= 0 || !CanUseKeyboardToPlay)
+            return;
+        if (Input.IsActionPressed("Move"))
+            AddRotationFromSliders();
+    }
 
-        if (@event.IsActionPressed("ResourceManagmentUp"))
-        {
-            _distribution = Mathf.Clamp(_distribution + 0.1f, 0f, 1f);
-            ComputeDistribution();
-        }
-        if (@event.IsActionPressed("ResourceManagmentDown"))
-        {
-            _distribution = Mathf.Clamp(_distribution - 0.1f, 0f, 1f);
-            ComputeDistribution();
-        }
-        
-        if (@event.IsActionPressed("SelfDamage")) ApplyDamage(10f);
-    }
-    
-    private void SetRotation(float rot)
-    {
-        Vector3 currRot = GetRotation();
-        if (_rotAxis)
-            SetRotation(currRot + new Vector3(0, rot, 0));
-        else 
-            SetRotation(currRot + new Vector3(0, 0, rot));
-    }
-    
     protected override void Shoot()
     {
-        if (_currBullets <= 0) return;
+        if (CurrHealth <= 0 || _currBullets <= 0)
+            return;
         base.Shoot();
+
         _currBullets--;
         UpdateAmmoIndicator();
-        
+
         if (_currBullets <= 0)
         {
             Eject();
@@ -189,35 +259,59 @@ public partial class Player : CharBase
             Bullet bulletInstance = (Bullet)_bulletScene.Instantiate();
             bulletInstance.initializeBullet(this, _bulletPoint.GlobalTransform, CurrDamage);
             GetParent().AddChild(bulletInstance);
+            AudioStreamPlayer3D audioPlayer = new AudioStreamPlayer3D();
+            audioPlayer.Finished += () => audioPlayer.QueueFree();
+            audioPlayer.Stream = shootSound;
+            audioPlayer.VolumeDb = shootAudioDB;
+            audioPlayer.GlobalPosition = GlobalTransform.Origin;
+            bulletInstance.AddChild(audioPlayer);
+            audioPlayer.Play();
+           
         }
     }
-    
+
+    /// <summary>
+    /// Sets the bullet count back to full and resets the reload signal.
+    /// </summary>
     private void Reload()
     {
+        if (CurrHealth <= 0)
+            return;
         _currBullets = _maxBullets;
         _reloadBlock.SetTransform(_defaultReloadBlockTransform);
         UpdateAmmoIndicator();
+        _reloadSignalSent = false;
     }
 
+    /// <summary>
+    /// Updates the visual ammo indicator. This now runs even if there are 0 bullets.
+    /// </summary>
     private void UpdateAmmoIndicator()
     {
         for (int i = 0; i < _bulletSegments.Count; i++)
         {
-            if (i < _currBullets)
-                _bulletSegments[i].MaterialOverride = _matAmmoOn;
-            else
-                _bulletSegments[i].MaterialOverride = _matAmmoOff;
+            _bulletSegments[i].MaterialOverride = (i < _currBullets) ? _matAmmoOn : _matAmmoOff;
         }
     }
-    
+
+    /// <summary>
+    /// Called when the magazine is empty. Sends a reload prompt if one hasn’t already been sent.
+    /// </summary>
     public void Eject()
     {
         _reloadBlock.SetTransform(_reloadBlockTransform);
-        SendReloadPrompt();
+        if (!_reloadSignalSent)
+        {
+            SendReloadPrompt();
+            _reloadSignalSent = true;
+        }
     }
-    
+
+    private int _flickerAmount;
     private void _on_timer_timeout()
     {
+        if (CurrHealth <= 0 || _flashlightEnergyLeft <= 0)
+            return;
         if (_flickerAmount >= 4)
         {
             _flashlightTimer.SetWaitTime(0.07);
@@ -233,16 +327,12 @@ public partial class Player : CharBase
 
     private void _on_low_health_buzzer_timer_timeout()
     {
-        //if (CurrHealth > _buzzerHealthThreshold) return;
-        //SendBuzzerBuzz();
-        //float aa = GetBuzzerBuzzTime();
-        //_LowHealthBuzzerTimer.Start(aa);
-        // GD.Print(aa);
     }
-
 
     private void CreateAmmoSegments()
     {
+        if (CurrHealth <= 0)
+            return;
         _ammoContainer = new Node3D { Name = "AmmoContainer" };
         _reloadBlock.AddChild(_ammoContainer);
         _ammoContainer.Owner = this;
@@ -268,8 +358,9 @@ public partial class Player : CharBase
         }
     }
 
-    public void SetDistribution(float dist) {
-        this._distribution = dist;
+    public void SetDistribution(float dist)
+    {
+        _distribution = dist;
         ComputeDistribution();
     }
 
@@ -280,7 +371,6 @@ public partial class Player : CharBase
             _defaultHealthScale.Y,
             _defaultHealthScale.Z * (1f - _distribution)
         );
-        
         _damageIndicator.Scale = new Vector3(
             _defaultDamageScale.X,
             _defaultDamageScale.Y,
@@ -290,7 +380,6 @@ public partial class Player : CharBase
 
     private void RegenerateHealth(double delta)
     {
-
         float regenRate = (1f - _distribution) * 5f;
         CurrHealth = Mathf.Min(CurrHealth + regenRate * (float)delta, MaxHealth);
     }
@@ -330,49 +419,43 @@ public partial class Player : CharBase
         int activeSegments = (int)Mathf.Round(ratio * _healthSegmentsCount);
         for (int i = 0; i < _healthSegments.Count; i++)
         {
-            if (i < activeSegments)
-                _healthSegments[i].MaterialOverride = _matHealthOn;
-            else
-                _healthSegments[i].MaterialOverride = _matHealthOff;
+            _healthSegments[i].MaterialOverride = (i < activeSegments) ? _matHealthOn : _matHealthOff;
         }
     }
-    
+
     private void ApplyDamage(float damage)
     {
+        if (CurrHealth <= 0)
+            return;
         CurrHealth = Mathf.Max(CurrHealth - damage, 0);
         UpdateHealthSegments();
     }
 
-    public EShotDirectionIndication GetShotDirectionIndicator(Vector3 hitLocation) {
-        EShotDirectionIndication indicatorResult = EShotDirectionIndication.ALL;  // By default for when it is diagonal
-        Vector3 hitLocationLocal = (hitLocation - GlobalPosition).Rotated(new Vector3(1,0,0), Rotation.X)
+    public EShotDirectionIndication GetShotDirectionIndicator(Vector3 hitLocation)
+    {
+        EShotDirectionIndication indicatorResult = EShotDirectionIndication.ALL;
+        Vector3 hitLocationLocal = (hitLocation - GlobalPosition)
+            .Rotated(new Vector3(1, 0, 0), Rotation.X)
             .Rotated(new Vector3(0, 1, 0), Rotation.Y)
             .Rotated(new Vector3(0, 0, 1), Rotation.Z);
         const float threshold = 2;
         float distanceZ = Math.Abs(hitLocationLocal.Z);
         float distanceY = Math.Abs(hitLocationLocal.Y);
         float distanceX = Math.Abs(hitLocationLocal.X);
-        // Up and down is basically forward and back
-        if (distanceX >= threshold && distanceX > distanceY && distanceX > distanceZ) {
-            if (hitLocationLocal.X > 0)
-                indicatorResult = EShotDirectionIndication.FORWARD;
-            else if (hitLocationLocal.X < 0)
-                indicatorResult = EShotDirectionIndication.BACK;
-        }
+        if (distanceX >= threshold && distanceX > distanceY && distanceX > distanceZ)
+            indicatorResult = hitLocationLocal.X > 0 ? EShotDirectionIndication.FORWARD : EShotDirectionIndication.BACK;
         else if (distanceY >= threshold && distanceY > distanceX && distanceY > distanceZ)
-        {
-            if (hitLocationLocal.Y > 0)
-                indicatorResult = EShotDirectionIndication.FORWARD;
-            else if (hitLocationLocal.Y < 0)
-                indicatorResult = EShotDirectionIndication.BACK;
+            indicatorResult = hitLocationLocal.Y > 0 ? EShotDirectionIndication.FORWARD : EShotDirectionIndication.BACK;
+        else if (distanceZ >= threshold && distanceZ > distanceX && distanceZ > distanceY)
+            indicatorResult = hitLocationLocal.Z > 0 ? EShotDirectionIndication.LEFT : EShotDirectionIndication.RIGHT;
+        else {
+            if (distanceX >= threshold)
+                indicatorResult = hitLocationLocal.X > 0 ? EShotDirectionIndication.FORWARD : EShotDirectionIndication.BACK;
+            else if (distanceY >= threshold)
+                indicatorResult = hitLocationLocal.Y > 0 ? EShotDirectionIndication.FORWARD : EShotDirectionIndication.BACK;
+            else if (distanceZ >= threshold)
+                indicatorResult = hitLocationLocal.Z > 0 ? EShotDirectionIndication.LEFT : EShotDirectionIndication.RIGHT;
         }
-        else if (distanceZ >= threshold && distanceZ > distanceX && distanceZ > distanceY) {
-            if (hitLocationLocal.Z > 0)
-                indicatorResult = EShotDirectionIndication.LEFT;
-            else if (hitLocationLocal.Z < 0)
-                indicatorResult = EShotDirectionIndication.RIGHT;
-        }
-
         return indicatorResult;
     }
 
@@ -391,10 +474,32 @@ public partial class Player : CharBase
         _serCommNode.Call("send_light_indicator", ((int)direction));
     }
 
-
-    public void _on_send_message_timer_timeout() {
-        if (CurrHealth <= 0) return;
-        // _serCommNode.Call("write_message");
+    public void _on_send_message_timer_timeout()
+    {
+        if (CurrHealth <= 0)
+            return;
         _SendMessageTimer.Start();
+    }
+
+    public void AddScore(int ScoreToAdd)
+    {
+        CurrentScore += ScoreToAdd;
+        ScoreAmountLabel.Text = CurrentScore.ToString();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ResetLevel"))
+            GetTree().ReloadCurrentScene();
+            //reload level 
+        if (!CanUseKeyboardToPlay)
+            return;
+        if (@event.IsActionPressed("Shoot"))
+            Shoot();
+        if (@event.IsActionPressed("Lights"))
+            _flashlightTimer.Start();
+        if (@event.IsActionPressed("Reload"))
+            Reload();
+        // move/changeRotation inputs removed, using sliders now.
     }
 }

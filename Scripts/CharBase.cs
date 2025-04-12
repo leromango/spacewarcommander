@@ -30,7 +30,9 @@ public partial class CharBase : CharacterBody3D
 	protected virtual void Shoot() { }
 	
 	protected virtual void Die() { }
-	
+
+	public bool isAlive() { return CurrHealth > 0; }
+
 	public float getHealth() { return CurrHealth; }
 	public float getDamage() { return CurrDamage; }
 	

@@ -1,67 +1,96 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyot4m7vsury7"]
+[gd_scene load_steps=16 format=3 uid="uid://dyot4m7vsury7"]
 
 [ext_resource type="PackedScene" uid="uid://bjp8bsdmhcbl2" path="res://Scenes/Player.tscn" id="1_6ow6k"]
-[ext_resource type="Texture2D" uid="uid://dh083cobyllxr" path="res://icon.svg" id="1_kacww"]
-[ext_resource type="PackedScene" uid="uid://d6s27boymx6h" path="res://Scenes/bullets/PlayerBullet.tscn" id="3_ecwcj"]
+[ext_resource type="Script" path="res://Scripts/LevelPlay.cs" id="1_7j4nw"]
+[ext_resource type="AudioStream" uid="uid://bycjlguupv8pb" path="res://Sounds/battle_music.mp3" id="2_xp8qn"]
+[ext_resource type="PackedScene" uid="uid://c0tkb3oocrwmn" path="res://Scenes/Enemies/FastEnemy.tscn" id="3_4oxug"]
+[ext_resource type="PackedScene" uid="uid://d03fret2xmt3n" path="res://Scenes/Enemies/HeavyEnemy.tscn" id="4_nkv3e"]
 [ext_resource type="PackedScene" uid="uid://c36d17xkfreox" path="res://Scenes/Enemies/FirstEnemy.tscn" id="4_rst2r"]
+[ext_resource type="PackedScene" uid="uid://drlo5v7flsjra" path="res://Scenes/VFX/ExplosionEffect.tscn" id="5_yle47"]
+[ext_resource type="Texture2D" uid="uid://orew5qmfdb54" path="res://Materials/panorama_image.png" id="6_vve20"]
+[ext_resource type="Script" path="res://Scripts/GD/soundManager.gd" id="8_ur5ab"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ohl3r"]
+panorama = ExtResource("6_vve20")
+
+[sub_resource type="Sky" id="Sky_wb7e4"]
+sky_material = SubResource("PanoramaSkyMaterial_ohl3r")
 
 [sub_resource type="Environment" id="Environment_ua22j"]
-background_mode = 1
+background_mode = 2
+sky = SubResource("Sky_wb7e4")
+ambient_light_energy = 0.0
 fog_mode = 1
+fog_light_color = Color(0, 0, 0, 1)
 fog_density = 1.0
-volumetric_fog_density = 0.045
-volumetric_fog_emission_energy = 1024.0
-volumetric_fog_gi_inject = 16.0
-volumetric_fog_length = 186.62
-volumetric_fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_albedo = Color(1, 0.25098, 1, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_vywtw"]
-size = Vector2(100, 100)
+[sub_resource type="FogMaterial" id="FogMaterial_oi4bq"]
+density = 0.3881
+albedo = Color(1, 0.34902, 1, 1)
+edge_fade = 7.35165
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vb0n3"]
-albedo_texture = ExtResource("1_kacww")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0puu2"]
+albedo_color = Color(1, 1, 0.647059, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.188235, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_m5ew5"]
-radius = 6.0
-height = 12.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hb4oy"]
-metallic = 0.6
-roughness = 0.0
+[sub_resource type="SphereMesh" id="SphereMesh_x514q"]
+material = SubResource("StandardMaterial3D_0puu2")
+radius = 300.0
+height = 600.0
 
 [node name="Level" type="Node3D"]
+script = ExtResource("1_7j4nw")
+battle_music = ExtResource("2_xp8qn")
+BattleMusicVolumeDB = -5.85
+NormalEnemyScene = ExtResource("4_rst2r")
+FastEnemyScene = ExtResource("3_4oxug")
+HeavyEnemyScene = ExtResource("4_nkv3e")
+ExplosionVFXScene = ExtResource("5_yle47")
+MaxEnemiesInLevel = 3
+CurrentEnemiesNum = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ua22j")
 
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110474, 4.25082, 28.0899)
+visible = false
+size = Vector3(29.4446, 16.8287, 33.2283)
+material = SubResource("FogMaterial_oi4bq")
+
 [node name="Node3D" type="Node3D" parent="."]
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(1, 0, 0, 0, -0.104372, -0.994538, 0, 0.994538, -0.104372, 0, 0, -428.95)
-mesh = SubResource("PlaneMesh_vywtw")
-surface_material_override/0 = SubResource("StandardMaterial3D_vb0n3")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Node3D"]
-transform = Transform3D(-0.0704702, 0.975781, -0.207088, 6.22215e-09, -0.207604, -0.978213, -0.997514, -0.0689349, 0.0146299, -82.2896, -3.28563, -4.02467)
-mesh = SubResource("PlaneMesh_vywtw")
-skeleton = NodePath("../MeshInstance3D5")
-surface_material_override/0 = SubResource("StandardMaterial3D_vb0n3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.569133, -0.137739, 0.810627, -0.204786, 0.931059, 0.30198, -0.796336, -0.337872, 0.501689, 0, 0, -7.59972)
-visible = false
+light_color = Color(1, 1, 0.454902, 1)
+light_energy = 4.152
 
 [node name="Player" parent="." instance=ExtResource("1_6ow6k")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 28.4097)
+_rotationSpeed = 1.0
 
-[node name="Bullet" parent="." instance=ExtResource("3_ecwcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.6984, 24.7782, -29.2373)
+[node name="EnemySpawnHandlerTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="FogHandlerTimer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.2741, 0, -31.9423)
-mesh = SubResource("SphereMesh_m5ew5")
-skeleton = NodePath("../WorldEnvironment")
-surface_material_override/0 = SubResource("StandardMaterial3D_hb4oy")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1569.31, 632.897, 0)
+mesh = SubResource("SphereMesh_x514q")
 
 [node name="FirstEnemy" parent="." instance=ExtResource("4_rst2r")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.64274, 15.7126, -35.3503)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.49546, 5.36499, -75.7015)
+maxHealth = 10.0
+
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("8_ur5ab")
+
+[connection signal="timeout" from="EnemySpawnHandlerTimer" to="." method="_on_enemy_spawn_handler_timer_timeout"]
+[connection signal="timeout" from="FogHandlerTimer" to="." method="_on_fog_handler_timer_timeout"]

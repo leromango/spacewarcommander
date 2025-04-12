@@ -18,7 +18,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		var distance_to_player : float = previousDestination.distance_to(playerRef.global_position)
 		# print("distance: " + str(distance_to_player))
 		if distance_to_player >= maxDistanceFromPlayer:
-			previousDestination = (playerRef.global_position - previousDestination).normalized() * (distance_to_player - maxDistanceFromPlayer)
+			previousDestination = (playerRef.global_position - previousDestination).normalized() * maxDistanceFromPlayer
 		blackboard.set_value("DestinationLocation", previousDestination)
 		# interrupt(actor, blackboard)
 	previousDestination = previousDestination as Vector3
