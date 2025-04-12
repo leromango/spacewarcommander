@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "T1ivZcV3q/w=",
+  "dgSpecHash": "j1LAQI/o9eg=",
   "success": true,
-  "projectFilePath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
+  "projectFilePath": "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
   "expectedPackageFiles": [
     "/Users/leromango/.nuget/packages/godot.sourcegenerators/4.3.0/godot.sourcegenerators.4.3.0.nupkg.sha512",
     "/Users/leromango/.nuget/packages/godotsharp/4.3.0/godotsharp.4.3.0.nupkg.sha512",

@@ -15,3 +15,105 @@
 /Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
 /Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
 /Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CopyComplete
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+E:/DOWNLOADS/IDM/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61 2/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CopyComplete
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+E:/DOWNLOADS/IDM/ALMOST COMPLETE SPACEWAR/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewar.A1EA19E9.Up2Date
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+/Users/leromango/Downloads/almost complete spacewar/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewar.A1EA19E9.Up2Date
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+/Users/mahditaziki/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CopyComplete
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+E:/DOWNLOADS/IDM/SPACEWAR ATTEMPT/SPACEWARCOMMANDER-489CE2B1C716E2B8A4EC3B4EC62FDEB6F214EC61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.deps.json
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.runtimeconfig.json
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/spacewarcommander.pdb
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.AssemblyReference.cache
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfoInputs.cache
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.AssemblyInfo.cs
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.csproj.CoreCompileInputs.cache
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewar.A1EA19E9.Up2Date
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/refint/spacewarcommander.dll
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.pdb
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/spacewarcommander.genruntimeconfig.cache
+/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/Debug/ref/spacewarcommander.dll

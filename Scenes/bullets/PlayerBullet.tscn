@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d6s27boymx6h"]
+[gd_scene load_steps=7 format=3 uid="uid://d6s27boymx6h"]
 
 [ext_resource type="Script" path="res://Scripts/Bullet.cs" id="1_8mplb"]
+[ext_resource type="PackedScene" uid="uid://506503aw3nrq" path="res://Scenes/VFX/HitEffect.tscn" id="2_btu0q"]
+[ext_resource type="AudioStream" uid="uid://jie42uo26f3o" path="res://Sounds/hit.mp3" id="3_x141r"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w1wee"]
 radius = 2.302
@@ -16,6 +18,8 @@ emission_energy_multiplier = 50000.0
 
 [node name="Bullet" type="StaticBody3D"]
 script = ExtResource("1_8mplb")
+HitVFXScene = ExtResource("2_btu0q")
+hitSound = ExtResource("3_x141r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_w1wee")
@@ -37,4 +41,10 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BulletCollision"]
 shape = SubResource("SphereShape3D_w1wee")
 
+[node name="SelfDestructionTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
 [connection signal="body_entered" from="BulletCollision" to="." method="_on_bullet_collision_body_entered"]
+[connection signal="timeout" from="SelfDestructionTimer" to="." method="_on_self_destruction_timer_timeout"]

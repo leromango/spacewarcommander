@@ -3,7 +3,6 @@ extends ActionLeaf
 @export var distanceAway : float = 1000
 @export var randomnessOfDestinationRange : float = 1000
 @export var acceptibleRadius : float = 300
-@export var fleeSpeed : float = 1
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
 	var previousDestination = blackboard.get_value("DestinationLocation")
@@ -19,6 +18,6 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 	if selfRef.is_at_location(previousDestination, acceptibleRadius):
 		blackboard.set_value("DestinationLocation", null)
 		return SUCCESS
-	selfRef.movementSpeed = fleeSpeed
+	selfRef.movementSpeed = selfRef.fleeMovementSpeed
 	selfRef.moveToLocation(previousDestination)
 	return RUNNING

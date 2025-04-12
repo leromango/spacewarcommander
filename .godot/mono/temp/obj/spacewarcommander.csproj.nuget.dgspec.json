@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {}
+    "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {}
   },
   "projects": {
-    "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {
+    "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
+        "projectUniqueName": "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
         "projectName": "spacewarcommander",
-        "projectPath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
+        "projectPath": "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/spacewarcommander.csproj",
         "packagesPath": "/Users/leromango/.nuget/packages/",
-        "outputPath": "/Users/leromango/Downloads/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/",
+        "outputPath": "/Users/leromango/Downloads/spacewar attempt/spacewar attempt/spacewarcommander-489ce2b1c716e2b8a4ec3b4ec62fdeb6f214ec61/.godot/mono/temp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/leromango/.nuget/NuGet/NuGet.Config"

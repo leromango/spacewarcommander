@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://drlo5v7flsjra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e6u5g"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8iveu"]
+material = SubResource("StandardMaterial3D_e6u5g")
+
+[node name="ExplosionEffect" type="CPUParticles3D"]
+emitting = false
+amount = 60
+lifetime = 3.57
+one_shot = true
+speed_scale = 1.85
+explosiveness = 0.75
+randomness = 0.58
+lifetime_randomness = 0.24
+fixed_fps = 60
+draw_order = 1
+mesh = SubResource("SphereMesh_8iveu")
+emission_shape = 1
+emission_sphere_radius = 5.7
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 13.38
+radial_accel_max = 24.94
+scale_amount_min = 1.85
+scale_amount_max = 3.35
+color = Color(1, 0, 0, 1)
+hue_variation_min = 0.17
+hue_variation_max = 0.29

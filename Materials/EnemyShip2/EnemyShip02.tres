@@ -1,0 +1,24 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://dfi4ee2smdpah"]
+
+[ext_resource type="Texture2D" uid="uid://cfl2j7osninu0" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_BaseColor.png" id="1_flj46"]
+[ext_resource type="Texture2D" uid="uid://decp0jnkaxog" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_Emissive.png" id="2_jhu7f"]
+[ext_resource type="Texture2D" uid="uid://bnyjc0g6ot8xs" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_Height.png" id="3_ydrff"]
+[ext_resource type="Texture2D" uid="uid://buc8teef7sgr6" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_Metallic.png" id="4_yhedt"]
+[ext_resource type="Texture2D" uid="uid://8ps5vslf01pp" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_Normal.png" id="5_473p8"]
+[ext_resource type="Texture2D" uid="uid://bumfb2gvhjoe" path="res://Materials/EnemyShip2/Textures/Enemy Ship 02_DefaultMaterial_Roughness.png" id="6_kbqsk"]
+
+[resource]
+albedo_texture = ExtResource("1_flj46")
+metallic = 1.0
+metallic_specular = 0.77
+metallic_texture = ExtResource("4_yhedt")
+roughness = 0.47
+roughness_texture = ExtResource("6_kbqsk")
+emission_enabled = true
+emission_energy_multiplier = 4.23
+emission_texture = ExtResource("2_jhu7f")
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("5_473p8")
+heightmap_texture = ExtResource("3_ydrff")
+texture_filter = 0
